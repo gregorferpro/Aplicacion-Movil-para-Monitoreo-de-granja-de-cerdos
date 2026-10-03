@@ -1,0 +1,736 @@
+SIPOR 360 - Resumen de esquema SQLite (real, extraido en vivo)
+================================================================
+Origen: sqlite_master del archivo real
+  C:\Users\asus f17\AppData\Roaming\com.example\cabana_cerdos_app\databases\sipor360_lapampita.db
+Fecha de extraccion: 2026-09-12
+PRAGMA user_version: 4
+Motor: sqflite_common_ffi (Windows/Linux) / sqflite (Android-iOS-macOS) /
+       sqflite_common_ffi_web (Web), segun lib/data/database_connection.dart
+Total tablas de usuario: 36 (mas sqlite_sequence, interna de SQLite)
+No existen VIEW ni TRIGGER en esta base.
+
+NOTA TECNICA: en SQLite una columna "TEXT PRIMARY KEY" no recibe NOT NULL
+automatico (a diferencia del estandar SQL). Se marca como "NULL*" en la
+columna PK cuando el CREATE TABLE no declaro NOT NULL de forma explicita
+junto a esa columna. Confirmado con PRAGMA table_info sobre el archivo real.
+
+Tablas intermedias (asociativas) detectadas: compra_detalles,
+formula_ingredientes, preparacion_ingredientes.
+
+================================================================
+SECCION 1: TABLAS BASE (motor local, sin cambios desde v1/v2)
+================================================================
+
+TABLA: metadatos_aplicacion
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+clave           | TEXT | PK    | NULL*
+valor           | TEXT | -     | NOT NULL
+actualizado_en  | TEXT | -     | NOT NULL
+
+Relaciones:
+(ninguna; tabla de configuracion clave-valor, sin FK)
+
+----------------------------------------------------------------
+
+TABLA: entidades_locales
+
+columna                 | tipo | PK/FK | NULL/NOT NULL
+tipo_entidad            | TEXT | PK (1/2) | NOT NULL
+id_entidad              | TEXT | PK (2/2) | NOT NULL
+codigo_cabana           | TEXT | -        | NOT NULL
+datos_json              | TEXT | -        | NOT NULL
+creado_en               | TEXT | -        | NOT NULL
+actualizado_en          | TEXT | -        | NOT NULL
+eliminado_en            | TEXT | -        | NULL
+estado_sincronizacion   | TEXT | -        | NOT NULL (DEFAULT 'pendiente')
+
+Relaciones:
+(ninguna FK declarada; almacen generico tipo documento, ver seccion de
+relaciones inferidas mas abajo para lo que realmente referencia
+datos_json)
+
+----------------------------------------------------------------
+
+TABLA: cola_sincronizacion
+
+columna              | tipo    | PK/FK | NULL/NOT NULL
+id                   | INTEGER | PK    | NULL* (alias de rowid, autoincrement)
+tipo_entidad         | TEXT    | -     | NOT NULL
+id_entidad           | TEXT    | -     | NOT NULL
+operacion            | TEXT    | -     | NOT NULL
+datos_json           | TEXT    | -     | NOT NULL
+creado_en            | TEXT    | -     | NOT NULL
+cantidad_intentos    | INTEGER | -     | NOT NULL (DEFAULT 0)
+ultimo_error         | TEXT    | -     | NULL
+
+Relaciones:
+(ninguna FK declarada; cola_sincronizacion.tipo_entidad/id_entidad
+apuntan logicamente a entidades_locales pero sin FK real, por diseno,
+para poder registrar tambien eliminaciones de filas ya borradas)
+
+================================================================
+SECCION 2: TABLAS DE DATASET DE REFERENCIA (clima y mercado, por
+zona/fuente)
+================================================================
+
+TABLA: zonas
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_zona         | TEXT | PK    | NULL*
+nombre_zona     | TEXT | -     | NOT NULL
+departamento    | TEXT | -     | NULL
+pais            | TEXT | -     | NULL
+
+Relaciones:
+(ninguna; es la tabla raiz de este dominio)
+
+----------------------------------------------------------------
+
+TABLA: fuentes_datos
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_fuente       | TEXT | PK    | NULL*
+nombre_fuente   | TEXT | -     | NOT NULL
+tipo_fuente     | TEXT | -     | NOT NULL
+descripcion     | TEXT | -     | NULL
+
+Relaciones:
+(ninguna; es la tabla raiz de este dominio)
+
+----------------------------------------------------------------
+
+TABLA: clima_exterior
+
+columna               | tipo | PK/FK | NULL/NOT NULL
+id_clima              | TEXT | PK    | NULL*
+id_zona               | TEXT | FK    | NOT NULL
+id_fuente             | TEXT | FK    | NOT NULL
+fecha_hora            | TEXT | -     | NOT NULL
+temperatura_2m_c      | REAL | -     | NULL
+humedad_relativa_2m   | REAL | -     | NULL
+precipitacion_mm      | REAL | -     | NULL
+lluvia_mm             | REAL | -     | NULL
+
+Relaciones:
+clima_exterior.id_zona -> zonas.id_zona
+clima_exterior.id_fuente -> fuentes_datos.id_fuente
+
+----------------------------------------------------------------
+
+TABLA: mercados
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_mercado      | TEXT | PK    | NULL*
+nombre_mercado  | TEXT | -     | NOT NULL
+id_zona         | TEXT | FK    | NOT NULL
+descripcion     | TEXT | -     | NULL
+
+Relaciones:
+mercados.id_zona -> zonas.id_zona
+
+----------------------------------------------------------------
+
+TABLA: precios_mercado_porcino
+
+columna           | tipo | PK/FK | NULL/NOT NULL
+id_precio         | TEXT | PK    | NULL*
+id_mercado        | TEXT | FK    | NOT NULL
+id_fuente         | TEXT | FK    | NOT NULL
+fecha             | TEXT | -     | NOT NULL
+precio_kg_vivo    | REAL | -     | NULL
+precio_kg_canal   | REAL | -     | NULL
+moneda            | TEXT | -     | NOT NULL
+
+Relaciones:
+precios_mercado_porcino.id_mercado -> mercados.id_mercado
+precios_mercado_porcino.id_fuente -> fuentes_datos.id_fuente
+
+----------------------------------------------------------------
+
+TABLA: indicadores_climaticos
+
+columna                   | tipo    | PK/FK | NULL/NOT NULL
+id_indicador_climatico    | TEXT    | PK    | NULL*
+id_zona                   | TEXT    | FK    | NOT NULL
+anio                      | INTEGER | -     | NOT NULL
+mes                       | INTEGER | -     | NOT NULL
+temperatura_promedio_c    | REAL    | -     | NULL
+humedad_promedio          | REAL    | -     | NULL
+precipitacion_total_mm    | REAL    | -     | NULL
+lluvia_total_mm           | REAL    | -     | NULL
+dias_calor_extremo        | INTEGER | -     | NULL
+dias_humedad_alta         | INTEGER | -     | NULL
+nivel_riesgo_sanitario    | TEXT    | -     | NULL
+
+Relaciones:
+indicadores_climaticos.id_zona -> zonas.id_zona
+
+----------------------------------------------------------------
+
+TABLA: indicadores_mercado
+
+columna                   | tipo    | PK/FK | NULL/NOT NULL
+id_indicador_mercado      | TEXT    | PK    | NULL*
+id_mercado                | TEXT    | FK    | NOT NULL
+anio                      | INTEGER | -     | NOT NULL
+mes                       | INTEGER | -     | NOT NULL
+precio_promedio_kg_vivo   | REAL    | -     | NULL
+precio_maximo_kg_vivo     | REAL    | -     | NULL
+precio_minimo_kg_vivo     | REAL    | -     | NULL
+tendencia                 | TEXT    | -     | NULL
+nivel_conveniencia        | TEXT    | -     | NULL
+
+Relaciones:
+indicadores_mercado.id_mercado -> mercados.id_mercado
+
+================================================================
+SECCION 3: TABLAS OPERACIONALES LOCALES DE LA CABANA
+================================================================
+
+TABLA: cabanas
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_cabana       | TEXT | PK    | NULL*
+nombre_cabana   | TEXT | -     | NOT NULL
+propietario     | TEXT | -     | NULL
+ubicacion       | TEXT | -     | NULL
+departamento    | TEXT | -     | NULL
+pais            | TEXT | -     | NULL
+
+Relaciones:
+(ninguna; es la tabla raiz de todo el dominio operacional)
+
+----------------------------------------------------------------
+
+TABLA: usuarios_locales
+
+columna           | tipo | PK/FK | NULL/NOT NULL
+id_usuario        | TEXT | PK    | NULL*
+id_cabana         | TEXT | FK    | NOT NULL
+nombre_completo   | TEXT | -     | NOT NULL
+rol               | TEXT | -     | NOT NULL
+telefono          | TEXT | -     | NULL
+correo            | TEXT | -     | NULL
+
+Relaciones:
+usuarios_locales.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: areas_cabana
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_area         | TEXT | PK    | NULL*
+id_cabana       | TEXT | FK    | NOT NULL
+nombre_area     | TEXT | -     | NOT NULL
+tipo_area       | TEXT | -     | NOT NULL
+descripcion     | TEXT | -     | NULL
+
+Relaciones:
+areas_cabana.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: corrales_jaulas
+
+columna                | tipo    | PK/FK | NULL/NOT NULL
+id_corral_jaula        | TEXT    | PK    | NULL*
+id_area                | TEXT    | FK    | NOT NULL
+nombre_corral_jaula    | TEXT    | -     | NOT NULL
+tipo                   | TEXT    | -     | NOT NULL
+capacidad_animales     | INTEGER | -     | NULL
+estado                 | TEXT    | -     | NOT NULL
+
+Relaciones:
+corrales_jaulas.id_area -> areas_cabana.id_area
+
+----------------------------------------------------------------
+
+TABLA: animales
+
+columna             | tipo | PK/FK | NULL/NOT NULL
+id_animal           | TEXT | PK    | NULL*
+id_cabana           | TEXT | FK    | NOT NULL
+codigo_animal       | TEXT | -     | NOT NULL
+tipo_animal         | TEXT | -     | NOT NULL
+sexo                | TEXT | -     | NOT NULL
+raza                | TEXT | -     | NULL
+fecha_nacimiento    | TEXT | -     | NULL
+estado              | TEXT | -     | NOT NULL
+
+Relaciones:
+animales.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: ciclos_reproductivos
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_ciclo        | TEXT | PK    | NULL*
+id_cerda        | TEXT | FK    | NOT NULL
+fecha_inicio    | TEXT | -     | NOT NULL
+estado          | TEXT | -     | NOT NULL
+observacion     | TEXT | -     | NULL
+
+Relaciones:
+ciclos_reproductivos.id_cerda -> animales.id_animal
+
+----------------------------------------------------------------
+
+TABLA: montas
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_monta        | TEXT | PK    | NULL*
+id_ciclo        | TEXT | FK    | NOT NULL
+id_verraco      | TEXT | FK    | NULL
+fecha_monta     | TEXT | -     | NOT NULL
+tipo_monta      | TEXT | -     | NULL
+observacion     | TEXT | -     | NULL
+
+Relaciones:
+montas.id_ciclo -> ciclos_reproductivos.id_ciclo
+montas.id_verraco -> animales.id_animal
+
+----------------------------------------------------------------
+
+TABLA: partos
+
+columna             | tipo    | PK/FK | NULL/NOT NULL
+id_parto            | TEXT    | PK    | NULL*
+id_ciclo            | TEXT    | FK    | NOT NULL
+fecha_parto         | TEXT    | -     | NOT NULL
+nacidos_vivos       | INTEGER | -     | NOT NULL
+nacidos_muertos     | INTEGER | -     | NOT NULL
+destetados          | INTEGER | -     | NULL
+observacion         | TEXT    | -     | NULL
+
+Relaciones:
+partos.id_ciclo -> ciclos_reproductivos.id_ciclo
+
+----------------------------------------------------------------
+
+TABLA: lotes_produccion
+
+columna                      | tipo    | PK/FK | NULL/NOT NULL
+id_lote                      | TEXT    | PK    | NULL*
+id_cabana                    | TEXT    | FK    | NOT NULL
+codigo_lote                  | TEXT    | -     | NOT NULL
+etapa                        | TEXT    | -     | NOT NULL
+fecha_inicio                 | TEXT    | -     | NOT NULL
+cantidad_inicial             | INTEGER | -     | NOT NULL
+cantidad_actual              | INTEGER | -     | NOT NULL
+peso_promedio_inicial_kg     | REAL    | -     | NULL
+estado                       | TEXT    | -     | NOT NULL
+
+Relaciones:
+lotes_produccion.id_cabana -> cabanas.id_cabana
+
+Observacion (no es un error, solo una nota de diseno): esta tabla NO
+tiene columna que la relacione con ciclos_reproductivos ni con el
+animal/madre que origino el lote. Si se necesita ese cruce, hoy no es
+posible con una FK directa.
+
+----------------------------------------------------------------
+
+TABLA: movimientos_lote
+
+columna                | tipo    | PK/FK | NULL/NOT NULL
+id_movimiento_lote     | TEXT    | PK    | NULL*
+id_lote                | TEXT    | FK    | NOT NULL
+fecha_movimiento       | TEXT    | -     | NOT NULL
+etapa_origen           | TEXT    | -     | NULL
+etapa_destino          | TEXT    | -     | NULL
+cantidad               | INTEGER | -     | NOT NULL
+observacion            | TEXT    | -     | NULL
+
+Relaciones:
+movimientos_lote.id_lote -> lotes_produccion.id_lote
+
+----------------------------------------------------------------
+
+TABLA: productos
+
+columna           | tipo | PK/FK | NULL/NOT NULL
+id_producto       | TEXT | PK    | NULL*
+id_cabana         | TEXT | FK    | NOT NULL
+nombre_producto   | TEXT | -     | NOT NULL
+categoria         | TEXT | -     | NOT NULL
+unidad_base       | TEXT | -     | NOT NULL
+costo_promedio    | REAL | -     | NULL
+estado            | TEXT | -     | NOT NULL
+
+Relaciones:
+productos.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: compras
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_compra       | TEXT | PK    | NULL*
+id_cabana       | TEXT | FK    | NOT NULL
+fecha_compra    | TEXT | -     | NOT NULL
+proveedor       | TEXT | -     | NULL
+total_compra    | REAL | -     | NOT NULL
+observacion     | TEXT | -     | NULL
+
+Relaciones:
+compras.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: compra_detalles  (tabla intermedia: compras <-> productos)
+
+columna             | tipo | PK/FK | NULL/NOT NULL
+id_detalle_compra   | TEXT | PK    | NULL*
+id_compra           | TEXT | FK    | NOT NULL
+id_producto         | TEXT | FK    | NOT NULL
+cantidad            | REAL | -     | NOT NULL
+unidad              | TEXT | -     | NOT NULL
+precio_unitario     | REAL | -     | NOT NULL
+subtotal            | REAL | -     | NOT NULL
+
+Relaciones:
+compra_detalles.id_compra -> compras.id_compra
+compra_detalles.id_producto -> productos.id_producto
+
+----------------------------------------------------------------
+
+TABLA: movimientos_inventario
+
+columna                     | tipo | PK/FK | NULL/NOT NULL
+id_movimiento_inventario    | TEXT | PK    | NULL*
+id_producto                 | TEXT | FK    | NOT NULL
+fecha_movimiento            | TEXT | -     | NOT NULL
+tipo_movimiento              | TEXT | -     | NOT NULL
+cantidad                     | REAL | -     | NOT NULL
+costo_unitario                | REAL | -   | NULL
+motivo                        | TEXT | -   | NULL
+
+Relaciones:
+movimientos_inventario.id_producto -> productos.id_producto
+
+----------------------------------------------------------------
+
+TABLA: formulas_alimento
+
+columna           | tipo | PK/FK | NULL/NOT NULL
+id_formula        | TEXT | PK    | NULL*
+id_cabana         | TEXT | FK    | NOT NULL
+nombre_formula    | TEXT | -     | NOT NULL
+etapa             | TEXT | -     | NOT NULL
+estado            | TEXT | -     | NOT NULL
+
+Relaciones:
+formulas_alimento.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: formula_ingredientes  (tabla intermedia: formulas_alimento <-> productos)
+
+columna                   | tipo | PK/FK | NULL/NOT NULL
+id_formula_ingrediente    | TEXT | PK    | NULL*
+id_formula                | TEXT | FK    | NOT NULL
+id_producto               | TEXT | FK    | NOT NULL
+porcentaje                | REAL | -     | NOT NULL
+
+Relaciones:
+formula_ingredientes.id_formula -> formulas_alimento.id_formula
+formula_ingredientes.id_producto -> productos.id_producto
+
+----------------------------------------------------------------
+
+TABLA: preparaciones_alimento
+
+columna              | tipo | PK/FK | NULL/NOT NULL
+id_preparacion       | TEXT | PK    | NULL*
+id_formula           | TEXT | FK    | NOT NULL
+fecha_preparacion    | TEXT | -     | NOT NULL
+cantidad_total_kg    | REAL | -     | NOT NULL
+costo_total          | REAL | -     | NOT NULL
+
+Relaciones:
+preparaciones_alimento.id_formula -> formulas_alimento.id_formula
+
+----------------------------------------------------------------
+
+TABLA: preparacion_ingredientes  (tabla intermedia: preparaciones_alimento <-> productos)
+
+columna                       | tipo | PK/FK | NULL/NOT NULL
+id_preparacion_ingrediente    | TEXT | PK    | NULL*
+id_preparacion                | TEXT | FK    | NOT NULL
+id_producto                   | TEXT | FK    | NOT NULL
+cantidad_kg                   | REAL | -     | NOT NULL
+costo_unitario                | REAL | -     | NOT NULL
+subtotal                      | REAL | -     | NOT NULL
+
+Relaciones:
+preparacion_ingredientes.id_preparacion -> preparaciones_alimento.id_preparacion
+preparacion_ingredientes.id_producto -> productos.id_producto
+
+----------------------------------------------------------------
+
+TABLA: consumos
+
+columna           | tipo | PK/FK | NULL/NOT NULL
+id_consumo        | TEXT | PK    | NULL*
+id_lote           | TEXT | FK    | NOT NULL
+id_producto       | TEXT | FK    | NOT NULL
+fecha_consumo     | TEXT | -     | NOT NULL
+cantidad          | REAL | -     | NOT NULL
+unidad            | TEXT | -     | NOT NULL
+costo_total       | REAL | -     | NULL
+observacion       | TEXT | -     | NULL
+
+Relaciones:
+consumos.id_lote -> lotes_produccion.id_lote
+consumos.id_producto -> productos.id_producto
+
+----------------------------------------------------------------
+
+TABLA: mortalidades
+
+columna             | tipo    | PK/FK | NULL/NOT NULL
+id_mortalidad       | TEXT    | PK    | NULL*
+id_lote             | TEXT    | FK    | NOT NULL
+fecha_mortalidad    | TEXT    | -     | NOT NULL
+cantidad_muertos    | INTEGER | -     | NOT NULL
+causa               | TEXT    | -     | NULL
+observacion         | TEXT    | -     | NULL
+
+Relaciones:
+mortalidades.id_lote -> lotes_produccion.id_lote
+
+----------------------------------------------------------------
+
+TABLA: pesajes
+
+columna                | tipo    | PK/FK | NULL/NOT NULL
+id_pesaje              | TEXT    | PK    | NULL*
+id_lote                | TEXT    | FK    | NOT NULL
+fecha_pesaje           | TEXT    | -     | NOT NULL
+peso_promedio_kg       | REAL    | -     | NOT NULL
+cantidad_animales      | INTEGER | -     | NULL
+observacion            | TEXT    | -     | NULL
+
+Relaciones:
+pesajes.id_lote -> lotes_produccion.id_lote
+
+----------------------------------------------------------------
+
+TABLA: costos_lote
+
+columna         | tipo | PK/FK | NULL/NOT NULL
+id_costo_lote   | TEXT | PK    | NULL*
+id_lote         | TEXT | FK    | NOT NULL
+fecha_costo     | TEXT | -     | NOT NULL
+concepto        | TEXT | -     | NOT NULL
+monto           | REAL | -     | NOT NULL
+observacion     | TEXT | -     | NULL
+
+Relaciones:
+costos_lote.id_lote -> lotes_produccion.id_lote
+
+----------------------------------------------------------------
+
+TABLA: ventas
+
+columna               | tipo    | PK/FK | NULL/NOT NULL
+id_venta              | TEXT    | PK    | NULL*
+id_lote               | TEXT    | FK    | NOT NULL
+fecha_venta           | TEXT    | -     | NOT NULL
+cantidad_animales     | INTEGER | -     | NOT NULL
+peso_total_kg         | REAL    | -     | NULL
+precio_kg             | REAL    | -     | NULL
+total_venta           | REAL    | -     | NOT NULL
+comprador             | TEXT    | -     | NULL
+observacion           | TEXT    | -     | NULL
+
+Relaciones:
+ventas.id_lote -> lotes_produccion.id_lote
+
+----------------------------------------------------------------
+
+TABLA: indicadores_climaticos_locales
+
+columna                   | tipo    | PK/FK | NULL/NOT NULL
+id_indicador_climatico    | TEXT    | PK    | NULL*
+id_cabana                 | TEXT    | FK    | NOT NULL
+anio                      | INTEGER | -     | NOT NULL
+mes                       | INTEGER | -     | NOT NULL
+temperatura_promedio_c    | REAL    | -     | NULL
+humedad_promedio          | REAL    | -     | NULL
+lluvia_total_mm           | REAL    | -     | NULL
+nivel_riesgo_sanitario    | TEXT    | -     | NULL
+
+Relaciones:
+indicadores_climaticos_locales.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: indicadores_mercado_locales
+
+columna                    | tipo    | PK/FK | NULL/NOT NULL
+id_indicador_mercado       | TEXT    | PK    | NULL*
+id_cabana                  | TEXT    | FK    | NOT NULL
+anio                       | INTEGER | -     | NOT NULL
+mes                        | INTEGER | -     | NOT NULL
+precio_promedio_kg_vivo    | REAL    | -     | NULL
+tendencia                  | TEXT    | -     | NULL
+nivel_conveniencia         | TEXT    | -     | NULL
+
+Relaciones:
+indicadores_mercado_locales.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: planificaciones_productivas
+
+columna                     | tipo | PK/FK | NULL/NOT NULL
+id_planificacion            | TEXT | PK    | NULL*
+id_cabana                   | TEXT | FK    | NOT NULL
+objetivo                    | TEXT | -     | NOT NULL
+fecha_monta_recomendada     | TEXT | -     | NULL
+fecha_parto_estimada        | TEXT | -     | NULL
+fecha_destete_estimada      | TEXT | -     | NULL
+fecha_venta_estimada        | TEXT | -     | NULL
+estado                      | TEXT | -     | NOT NULL
+fecha_creacion               | TEXT | -    | NOT NULL
+
+Relaciones:
+planificaciones_productivas.id_cabana -> cabanas.id_cabana
+
+----------------------------------------------------------------
+
+TABLA: recomendaciones_productivas
+
+columna             | tipo | PK/FK | NULL/NOT NULL
+id_recomendacion    | TEXT | PK    | NULL*
+id_planificacion    | TEXT | FK    | NOT NULL
+puntaje_clima       | REAL | -     | NULL
+puntaje_precio      | REAL | -     | NULL
+puntaje_salud       | REAL | -     | NULL
+puntaje_peso        | REAL | -     | NULL
+puntaje_total       | REAL | -     | NULL
+explicacion         | TEXT | -     | NULL
+fecha_generada      | TEXT | -     | NOT NULL
+
+Relaciones:
+recomendaciones_productivas.id_planificacion -> planificaciones_productivas.id_planificacion
+
+================================================================
+RELACIONES DECLARADAS COMO FOREIGN KEY (resumen consolidado, solo
+las que existen realmente en sqlite_master / PRAGMA foreign_key_list)
+================================================================
+clima_exterior.id_zona -> zonas.id_zona
+clima_exterior.id_fuente -> fuentes_datos.id_fuente
+mercados.id_zona -> zonas.id_zona
+precios_mercado_porcino.id_mercado -> mercados.id_mercado
+precios_mercado_porcino.id_fuente -> fuentes_datos.id_fuente
+indicadores_climaticos.id_zona -> zonas.id_zona
+indicadores_mercado.id_mercado -> mercados.id_mercado
+usuarios_locales.id_cabana -> cabanas.id_cabana
+areas_cabana.id_cabana -> cabanas.id_cabana
+corrales_jaulas.id_area -> areas_cabana.id_area
+animales.id_cabana -> cabanas.id_cabana
+ciclos_reproductivos.id_cerda -> animales.id_animal
+montas.id_ciclo -> ciclos_reproductivos.id_ciclo
+montas.id_verraco -> animales.id_animal
+partos.id_ciclo -> ciclos_reproductivos.id_ciclo
+lotes_produccion.id_cabana -> cabanas.id_cabana
+movimientos_lote.id_lote -> lotes_produccion.id_lote
+productos.id_cabana -> cabanas.id_cabana
+compras.id_cabana -> cabanas.id_cabana
+compra_detalles.id_compra -> compras.id_compra
+compra_detalles.id_producto -> productos.id_producto
+movimientos_inventario.id_producto -> productos.id_producto
+formulas_alimento.id_cabana -> cabanas.id_cabana
+formula_ingredientes.id_formula -> formulas_alimento.id_formula
+formula_ingredientes.id_producto -> productos.id_producto
+preparaciones_alimento.id_formula -> formulas_alimento.id_formula
+preparacion_ingredientes.id_preparacion -> preparaciones_alimento.id_preparacion
+preparacion_ingredientes.id_producto -> productos.id_producto
+consumos.id_lote -> lotes_produccion.id_lote
+consumos.id_producto -> productos.id_producto
+mortalidades.id_lote -> lotes_produccion.id_lote
+pesajes.id_lote -> lotes_produccion.id_lote
+costos_lote.id_lote -> lotes_produccion.id_lote
+ventas.id_lote -> lotes_produccion.id_lote
+indicadores_climaticos_locales.id_cabana -> cabanas.id_cabana
+indicadores_mercado_locales.id_cabana -> cabanas.id_cabana
+planificaciones_productivas.id_cabana -> cabanas.id_cabana
+recomendaciones_productivas.id_planificacion -> planificaciones_productivas.id_planificacion
+
+Total: 36 FOREIGN KEY reales, verificadas con PRAGMA foreign_key_list
+sobre el archivo real. entidades_locales, cola_sincronizacion y
+metadatos_aplicacion no tienen ninguna FK declarada.
+
+================================================================
+RELACIONES INFERIDAS DESDE EL CODIGO
+(NO son FOREIGN KEY reales en SQLite. Viven dentro de datos_json en
+entidades_locales, como identificadores de texto libre sin validacion
+referencial por parte de SQLite. Separadas aqui a proposito, tal como
+se pidio, para no mezclarlas con las relaciones declaradas arriba.)
+================================================================
+
+Origen: modulo "resumen_modulo" / id_entidad = "costos_produccion"
+(codigo fuente: lib/data/production_cost_codec.dart)
+
+- PurchaseEntry.productId -> Product (dentro del mismo JSON, por id de texto)
+- InventoryMovement.productId -> Product
+- InventoryMovement.referenceType + referenceId -> referencia polimorfica
+  libre (el codigo no fija a que tipo de entidad apunta; depende del
+  valor de referenceType en tiempo de ejecucion)
+- FormulaIngredient (dentro de FeedFormula.ingredients[]).productId -> Product
+- PreparedFoodBatch.productId -> Product (el producto preparado resultante)
+- PreparedFoodBatch.formulaId -> FeedFormula
+- PreparationIngredient (dentro de PreparedFoodBatch.ingredients[]).productId -> Product
+- ProductionLot.motherId -> identificador libre de un animal/madre; NO
+  existe una entidad "Animal" en este JSON (costos_produccion), por lo
+  que esta referencia no se puede resolver dentro del mismo modulo
+- ProductiveMovement.lotId -> ProductionLot
+- ReproductiveCycle.motherId -> mismo caso que ProductionLot.motherId
+  (identificador libre, sin entidad Animal en este JSON)
+- ConsumptionRecord.productId -> Product
+- ConsumptionRecord.lotId -> ProductionLot
+- ConsumptionRecord.animalId -> identificador libre, sin entidad Animal
+  en este JSON
+- ConsumptionRecord.corral -> identificador de texto libre (nombre de
+  corral), sin tabla/entidad Corral asociada en este JSON
+- ManagementProtocol.productId -> Product
+- MortalityRecord.lotId -> ProductionLot
+- SaleRecord.lotId -> ProductionLot
+
+Origen: modulo "resumen_modulo" / id_entidad = "gestacion"
+(codigo fuente: lib/main.dart, clases GestationCrate/BoarRecord/
+FarrowingRecord/AbortionRecord/SynchronizationBatch, lineas ~8640-8918)
+
+- GestationCrate.matingBoars (lista de String?) -> referencia por
+  numero/etiqueta a BoarRecord, que vive en OTRO modulo distinto
+  (id_entidad = "verracos"); es una referencia cruzada entre dos
+  bloques JSON separados, sin ningun mecanismo de integridad
+- SynchronizationBatch.earTags (lista de String) -> referencia por
+  arete a GestationCrate.earTag dentro del mismo modulo "gestacion"
+- GestationCrate.farrowingRecord / abortionRecord -> son objetos
+  embebidos directamente (composicion 1 a 1 dentro del mismo JSON,
+  no una referencia por id)
+
+Origen: modulo "resumen_modulo" / id_entidad = "pre_destete"
+(codigo fuente: lib/main.dart, clases _PreDesteteCorralRecord /
+_FeederRecord)
+
+- _PreDesteteCorralRecord.origin -> texto libre que describe de donde
+  vienen los lechones (ej. nombre de maternidad); no es un id
+  verificado contra ningun otro modulo, solo texto descriptivo
+- _FeederRecord.barnId -> identifica el galpon al que pertenece el
+  comedero mediante un codigo de texto fijo en el codigo (no referencia
+  ninguna fila de otro modulo JSON)
+
+NOTA IMPORTANTE: se revisaron tambien lib/models/farm_models.dart y
+lib/controllers/farm_controllers.dart (usados por lib/views/records_page.dart
+y lib/views/widgets/model_preview.dart). Definen clases con nombres
+similares (GestationCrate, BoarRecord, FarrowingRecord, AbortionRecord)
+pero NO tienen ningun llamado a localDatabase/readSnapshot/writeSnapshot/
+scheduleSnapshot: no persisten en SQLite. Se excluyen de este resumen
+porque no generan relaciones dentro de la base de datos.

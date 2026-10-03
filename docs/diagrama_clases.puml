@@ -1,0 +1,351 @@
+@startuml diagrama_clases
+title SIPOR 360 - Diagrama de clases
+
+skinparam backgroundColor #F6F8F5
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #527567
+  ArrowColor #527567
+  FontColor #1F2D27
+}
+hide empty members
+
+class Cabana {
+  - codigo: Cadena
+  - nombre: Cadena
+  - moneda: Cadena
+  - zonaHoraria: Cadena
+  + registrarGalpon()
+  + obtenerCostoTotal(): Decimal
+}
+
+class Galpon {
+  - codigo: Cadena
+  - nombre: Cadena
+  - tipo: Cadena
+  - capacidad: Entero
+  + calcularOcupacion(): Entero
+}
+
+class Jaula {
+  - numero: Entero
+  - lado: Cadena
+  - posicion: Entero
+  - estado: Cadena
+  + ocupar()
+  + liberar()
+  + intercambiar()
+}
+
+class Corral {
+  - numero: Entero
+  - etapa: Cadena
+  - capacidad: Entero
+  - cantidadAnimales: Entero
+  + asignarLote()
+  + trasladarLote()
+}
+
+class Comedero {
+  - codigo: Cadena
+  - capacidadKg: Decimal
+  - cantidadActualKg: Decimal
+  + registrarAlimento()
+  + calcularDisponible(): Decimal
+}
+
+class Cerda {
+  - numeroArete: Cadena
+  - fechaNacimiento: Fecha
+  - lineaSangre: Cadena
+  - estadoReproductivo: Cadena
+  + iniciarCiclo()
+  + confirmarPrenez()
+  + trasladar()
+}
+
+class Verraco {
+  - codigo: Cadena
+  - nombre: Cadena
+  - lineaSangre: Cadena
+  - cantidadMontas: Entero
+  + registrarMonta()
+  + actualizarDatos()
+}
+
+class CicloReproductivo {
+  - fechaInicio: Fecha
+  - estado: Cadena
+  - diasGestacion: Entero
+  - fechaProbableParto: Fecha
+  - fechaTrasladoMaternidad: Fecha
+  + calcularDiasGestacion(): Entero
+  + calcularFechaParto(): Fecha
+  + verificarRepeticionCelo()
+}
+
+class Monta {
+  - numero: Entero
+  - fecha: Fecha
+  - observaciones: Cadena
+  + registrar()
+}
+
+class Parto {
+  - fecha: Fecha
+  - nacidosVivos: Entero
+  - nacidosMuertos: Entero
+  - machos: Entero
+  - hembras: Entero
+  - momificados: Entero
+  + calcularTotalNacidos(): Entero
+  + crearLote()
+}
+
+class Aborto {
+  - fecha: Fecha
+  - cantidadPerdida: Entero
+  - diasGestacion: Entero
+  - causa: Cadena
+  - observaciones: Cadena
+  + registrar()
+}
+
+class LoteProduccion {
+  - codigo: Cadena
+  - fechaNacimiento: Fecha
+  - cantidadInicial: Entero
+  - cantidadActual: Entero
+  - etapaActual: Cadena
+  - ubicacionActual: Cadena
+  - costoAcumulado: Decimal
+  + calcularCostoPorAnimal(): Decimal
+  + calcularCostoPorKg(): Decimal
+  + cambiarEtapa()
+}
+
+class MovimientoProductivo {
+  - fecha: Fecha
+  - etapaOrigen: Cadena
+  - etapaDestino: Cadena
+  - cantidadTrasladada: Entero
+  + registrarTraslado()
+}
+
+class Mortalidad {
+  - fecha: Fecha
+  - etapa: Cadena
+  - cantidadMuertos: Entero
+  - causa: Cadena
+  + registrar()
+}
+
+class Producto {
+  - codigo: Cadena
+  - nombre: Cadena
+  - categoria: Cadena
+  - unidadBase: Cadena
+  - existencia: Decimal
+  - costoPromedio: Decimal
+  - existenciaMinima: Decimal
+  + actualizarExistencia()
+  + calcularValorInventario(): Decimal
+  + estaBajoMinimo(): Booleano
+}
+
+class Compra {
+  - fecha: Fecha
+  - proveedor: Cadena
+  - cantidad: Decimal
+  - unidadCompra: Cadena
+  - precioTotal: Decimal
+  - costoUnitario: Decimal
+  + calcularCostoUnitario(): Decimal
+  + ingresarInventario()
+}
+
+class MovimientoInventario {
+  - fecha: Fecha
+  - tipo: Cadena
+  - cantidad: Decimal
+  - costoUnitario: Decimal
+  - costoTotal: Decimal
+  - referencia: Cadena
+  + aplicarMovimiento()
+}
+
+class FormulaAlimento {
+  - codigo: Cadena
+  - nombre: Cadena
+  - etapa: Cadena
+  - version: Entero
+  - activa: Booleano
+  + validarPorcentajes(): Booleano
+  + calcularCostoPorKg(): Decimal
+}
+
+class IngredienteFormula {
+  - porcentaje: Decimal
+  - cantidadKg: Decimal
+  - costo: Decimal
+  + calcularCantidad()
+  + calcularCosto()
+}
+
+class LoteAlimentoPreparado {
+  - codigo: Cadena
+  - fechaPreparacion: Fecha
+  - cantidadProducidaKg: Decimal
+  - cantidadDisponibleKg: Decimal
+  - costoTotal: Decimal
+  - costoPorKg: Decimal
+  + descontarCantidad()
+}
+
+class Consumo {
+  - fecha: Fecha
+  - etapa: Cadena
+  - cantidad: Decimal
+  - unidad: Cadena
+  - costoTotal: Decimal
+  - destino: Cadena
+  + calcularCosto()
+  + registrarSalidaInventario()
+}
+
+class ProtocoloManejo {
+  - nombre: Cadena
+  - etapa: Cadena
+  - diaRecomendado: Entero
+  - cantidad: Decimal
+  - unidad: Cadena
+  + programarAplicacion()
+}
+
+class LineaCosto {
+  - fecha: Fecha
+  - etapa: Cadena
+  - categoria: Cadena
+  - descripcion: Cadena
+  - monto: Decimal
+  + asignarAlLote()
+}
+
+class Venta {
+  - fecha: Fecha
+  - cantidadAnimales: Entero
+  - pesoTotalKg: Decimal
+  - precioPorKg: Decimal
+  - ingresoTotal: Decimal
+  - comprador: Cadena
+  + calcularIngresoTotal(): Decimal
+  + calcularUtilidad(): Decimal
+}
+
+class RepositorioProduccion {
+  + cargarDatos()
+  + guardarDatos()
+  + registrarCompra()
+  + registrarConsumo()
+  + registrarMortalidad()
+  + registrarVenta()
+  + moverLote()
+}
+
+class ServicioCostos {
+  + calcularCostoPromedioPonderado(): Decimal
+  + calcularCostoPorEtapa(): Decimal
+  + calcularCostoPorAnimal(): Decimal
+  + calcularCostoPorKg(): Decimal
+  + calcularPrecioSugerido(): Decimal
+}
+
+class BaseDatosLocal {
+  - nombreArchivo: Cadena
+  - versionEsquema: Entero
+  + inicializar()
+  + leerResumenModulo()
+  + guardarResumenModulo()
+  + guardarEntidad()
+  + eliminarEntidad()
+  + contarPendientes(): Entero
+}
+
+class MetadatoAplicacion {
+  - clave: Cadena
+  - valor: Cadena
+  - actualizadoEn: FechaHora
+}
+
+class EntidadLocal {
+  - tipoEntidad: Cadena
+  - idEntidad: Cadena
+  - codigoCabana: Cadena
+  - datosJson: Cadena
+  - creadoEn: FechaHora
+  - actualizadoEn: FechaHora
+  - eliminadoEn: FechaHora
+  - estadoSincronizacion: Cadena
+}
+
+class RegistroSincronizacion {
+  - identificador: Entero
+  - tipoEntidad: Cadena
+  - idEntidad: Cadena
+  - operacion: Cadena
+  - datosJson: Cadena
+  - creadoEn: FechaHora
+  - cantidadIntentos: Entero
+  - ultimoError: Cadena
+  + marcarProcesado()
+  + registrarError()
+}
+
+Cabana "1" *-- "1..*" Galpon
+Galpon "1" *-- "0..*" Jaula
+Galpon "1" *-- "0..*" Corral
+Corral "1" *-- "0..*" Comedero
+
+Jaula "0..1" o-- "0..1" Cerda
+Jaula "0..1" o-- "0..1" Verraco
+Corral "0..1" o-- "0..1" LoteProduccion
+
+Cerda "1" *-- "0..*" CicloReproductivo
+CicloReproductivo "1" *-- "0..3" Monta
+Monta "0..*" --> "1" Verraco
+CicloReproductivo "1" o-- "0..1" Parto
+CicloReproductivo "1" o-- "0..1" Aborto
+Parto "1" --> "1" LoteProduccion
+
+LoteProduccion "1" *-- "0..*" MovimientoProductivo
+LoteProduccion "1" *-- "0..*" Mortalidad
+LoteProduccion "1" *-- "0..*" LineaCosto
+LoteProduccion "1" *-- "0..*" Consumo
+LoteProduccion "1" o-- "0..*" Venta
+
+Producto "1" o-- "0..*" Compra
+Producto "1" o-- "0..*" MovimientoInventario
+FormulaAlimento "1" *-- "1..*" IngredienteFormula
+IngredienteFormula "0..*" --> "1" Producto
+FormulaAlimento "1" --> "0..*" LoteAlimentoPreparado
+LoteAlimentoPreparado "1" --> "0..*" Consumo
+Consumo "0..*" --> "1" Producto
+Consumo "0..*" --> "0..1" Comedero
+ProtocoloManejo "0..*" --> "1" Producto
+
+RepositorioProduccion "1" o-- "0..*" Producto
+RepositorioProduccion "1" o-- "0..*" LoteProduccion
+RepositorioProduccion "1" o-- "0..*" Cerda
+RepositorioProduccion "1" o-- "0..*" Verraco
+RepositorioProduccion "1" --> "1" ServicioCostos
+RepositorioProduccion "1" --> "1" BaseDatosLocal
+
+BaseDatosLocal "1" *-- "1..*" MetadatoAplicacion
+BaseDatosLocal "1" *-- "0..*" EntidadLocal
+BaseDatosLocal "1" *-- "0..*" RegistroSincronizacion
+EntidadLocal "1" --> "0..*" RegistroSincronizacion
+
+@enduml

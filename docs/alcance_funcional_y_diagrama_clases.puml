@@ -1,0 +1,543 @@
+@startuml alcance_funcional
+title SIPOR 360 - Alcance funcional
+caption Sistema inteligente de gestion, sanidad y costos de produccion porcina\nCaso inicial: Cabana La Pampita
+
+left to right direction
+skinparam backgroundColor #F6F8F5
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #527567
+  ArrowColor #527567
+  FontColor #1F2D27
+}
+skinparam actor {
+  BorderColor #285B49
+  FontColor #1F2D27
+}
+
+actor "Administrador\nde la cabana" as Admin
+actor "Trabajador\nde granja" as Worker
+actor "Veterinario /\ntecnico" as Vet
+actor "Servicio central\nde precios" as Cloud
+
+rectangle "SIPOR 360" {
+  package "Plano y operacion 3D" as Mapa {
+    usecase "Explorar plano 3D\nde la cabana" as UC_Mapa
+    usecase "Abrir galpon por toque\ny manipular camara" as UC_Abrir
+    usecase "Gestionar jaulas, corrales\ny comederos" as UC_CrudEspacios
+  }
+
+  package "Reproduccion" as Repro {
+    usecase "Registrar cerda por arete" as UC_Arete
+    usecase "Registrar celo y\nhasta 3 montas" as UC_Montas
+    usecase "Seleccionar verraco y\ncontabilizar montas" as UC_Verraco
+    usecase "Controlar repeticion de\ncelo a los 21 dias" as UC_Celo21
+    usecase "Calcular gestacion, parto\ny traslado a maternidad" as UC_Gestacion
+    usecase "Registrar ampolla\npost-destete" as UC_Ampolla
+    usecase "Registrar parto, lechones,\nmortalidad y aborto" as UC_Parto
+    usecase "Mover o intercambiar\ncerdas entre jaulas" as UC_Mover
+  }
+
+  package "Etapas productivas" as Produccion {
+    usecase "Administrar pre-destete" as UC_Pre
+    usecase "Administrar parrilla" as UC_Parrilla
+    usecase "Administrar engorde" as UC_Engorde
+    usecase "Mantener identidad del lote\ndesde nacimiento hasta venta" as UC_Lote
+    usecase "Registrar traslados, bajas\ny cantidad de animales" as UC_Movimiento
+  }
+
+  package "Inventario y alimentacion" as Inventario {
+    usecase "Registrar productos, alimentos,\nfarmacos y vacunas" as UC_Productos
+    usecase "Registrar compras en Bs\ny actualizar existencias" as UC_Compras
+    usecase "Controlar entradas, salidas,\najustes y mermas" as UC_Stock
+    usecase "Crear formulas y preparar\nlotes de alimento" as UC_Formula
+    usecase "Registrar consumo por animal,\ncorral o lote" as UC_Consumo
+    usecase "Alimentar individualmente\no a todas las jaulas" as UC_Alimentar
+  }
+
+  package "Costos y resultados" as Costos {
+    usecase "Acumular costos por lote,\netapa y categoria" as UC_Costos
+    usecase "Calcular costo por animal\ny kilogramo producido" as UC_Unitario
+    usecase "Registrar ventas, margen\ny precio sugerido" as UC_Ventas
+    usecase "Consultar reportes\nproductivos y economicos" as UC_Reportes
+  }
+
+  package "Persistencia y sincronizacion" as Datos {
+    usecase "Guardar datos offline\nen SQLite" as UC_SQLite
+    usecase "Preparar cambios pendientes\nen cola de sincronizacion" as UC_Outbox
+    usecase "Sincronizar costos autorizados\ncon API y PostgreSQL" as UC_Sync
+    usecase "Consolidar indicadores futuros\npara precios de referencia" as UC_DW
+  }
+}
+
+Admin --> UC_Mapa
+Admin --> UC_CrudEspacios
+Admin --> UC_Productos
+Admin --> UC_Compras
+Admin --> UC_Formula
+Admin --> UC_Costos
+Admin --> UC_Ventas
+Admin --> UC_Reportes
+
+Worker --> UC_Abrir
+Worker --> UC_Arete
+Worker --> UC_Montas
+Worker --> UC_Verraco
+Worker --> UC_Ampolla
+Worker --> UC_Parto
+Worker --> UC_Mover
+Worker --> UC_Pre
+Worker --> UC_Parrilla
+Worker --> UC_Engorde
+Worker --> UC_Movimiento
+Worker --> UC_Consumo
+Worker --> UC_Alimentar
+
+Vet --> UC_Celo21
+Vet --> UC_Gestacion
+Vet --> UC_Parto
+Vet --> UC_Reportes
+
+UC_Mapa ..> UC_Abrir : <<include>>
+UC_Abrir ..> UC_CrudEspacios : <<include>>
+UC_Montas ..> UC_Verraco : <<include>>
+UC_Montas ..> UC_Celo21 : <<extend>>
+UC_Celo21 ..> UC_Gestacion : <<extend>>
+UC_Gestacion ..> UC_Mover : <<include>>
+UC_Parto ..> UC_Lote : <<include>>
+UC_Pre ..> UC_Lote : <<include>>
+UC_Parrilla ..> UC_Lote : <<include>>
+UC_Engorde ..> UC_Lote : <<include>>
+UC_Consumo ..> UC_Stock : <<include>>
+UC_Consumo ..> UC_Costos : <<include>>
+UC_Compras ..> UC_Stock : <<include>>
+UC_Formula ..> UC_Stock : <<include>>
+UC_Costos ..> UC_Unitario : <<include>>
+UC_Ventas ..> UC_Unitario : <<include>>
+
+UC_CrudEspacios ..> UC_SQLite : <<include>>
+UC_Arete ..> UC_SQLite : <<include>>
+UC_Productos ..> UC_SQLite : <<include>>
+UC_Costos ..> UC_SQLite : <<include>>
+UC_SQLite ..> UC_Outbox : <<include>>
+UC_Outbox ..> UC_Sync : <<extend>>
+UC_Sync --> Cloud
+UC_Sync ..> UC_DW : <<extend>>
+
+note bottom of Datos
+  Alcance de la primera version:
+  * Aplicacion Flutter para Android, iOS, Windows y web.
+  * Trabajo sin Internet con almacenamiento SQLite local.
+  * Operacion inicial personalizada para Cabana La Pampita.
+  * Moneda BOB (Bs), quintal de 46 kg y zona America/La_Paz.
+
+  Evolucion prevista:
+  * API central y PostgreSQL para sincronizar dispositivos.
+  * Data warehouse para indicadores de varias cabanas.
+  * Recomendaciones sanitarias validadas por profesionales.
+end note
+
+legend bottom left
+  |= Estado |= Descripcion |
+  | Actual | Gestion productiva, reproductiva, inventario, costos y SQLite |
+  | Preparado | Cola local de sincronizacion |
+  | Futuro | API, PostgreSQL, data warehouse y precios sectoriales |
+endlegend
+@enduml
+
+
+@startuml diagrama_clases
+title SIPOR 360 - Diagrama de clases
+caption Arquitectura funcional principal - Cabana La Pampita
+
+skinparam backgroundColor #F6F8F5
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #527567
+  ArrowColor #527567
+  FontColor #1F2D27
+}
+hide empty members
+
+package "Presentacion Flutter y 3D" #E8F1EC {
+  class CabanaApp <<Flutter>>
+  class CabanaShell <<Flutter>> {
+    -currentIndex: int
+    +cambiarModulo(indice)
+  }
+  class FarmMapPage <<Flutter>> {
+    +abrirEdificio(tipo)
+  }
+  class Maternity3DPage <<Flutter>> {
+    +mostrarModeloGLB()
+    +abrirCrudJaula(numero)
+    +restablecerVistaSuperior()
+  }
+  class MaternityModelViewer <<Widget 3D>> {
+    +source: String
+    +cameraControls: bool
+  }
+  class GalponInventoryPage <<Flutter>> {
+    +mostrarInventario()
+    +mostrarCostos()
+  }
+}
+
+package "Reproduccion y maternidad" #FDECEF {
+  enum ReproductiveStatus {
+    empty
+    inHeat
+    inMating
+    observation
+    confirmed
+  }
+
+  class GestationCrate {
+    +number: int
+    +side: String
+    +sideNumber: int
+    +earTag: String?
+    +matingDates: List<DateTime>
+    +matingBoars: List<String?>
+    +heatCheckDone: bool
+    +status: ReproductiveStatus
+    +daysPregnant: int?
+    +expectedFarrowingDate: DateTime?
+    +transferToMaternityDate: DateTime?
+  }
+
+  class BoarRecord {
+    +number: int
+    +name: String
+    +bloodline: String
+  }
+
+  class FarrowingRecord {
+    +date: DateTime
+    +bornAlive: int
+    +dead: int
+    +males: int
+    +females: int
+    +mummified: int
+    +totalBorn: int
+  }
+
+  class AbortionRecord {
+    +date: DateTime
+    +lostCount: int
+    +gestationDays: int
+    +notes: String
+  }
+
+  class SynchronizationBatch {
+    +weaningDate: DateTime
+    +ampouleDate: DateTime
+    +heatDate: DateTime
+    +earTags: List<String>
+    +matingDates: List<DateTime>
+  }
+}
+
+package "Inventario y alimento" #EAF3FB {
+  enum ProductCategory {
+    feedIngredient
+    preparedFeed
+    medicine
+    vaccine
+    handlingProduct
+    serviceExpense
+  }
+
+  enum InventoryMovementType {
+    entry
+    output
+    adjustment
+    preparation
+    consumption
+    loss
+  }
+
+  enum ConsumptionTarget {
+    corral
+    lot
+    animal
+  }
+
+  class SyncFields {
+    +idLocal: String
+    +uuid: String
+    +createdAt: DateTime
+    +updatedAt: DateTime
+    +synced: bool
+    +deletedAt: DateTime?
+  }
+
+  class Product {
+    +name: String
+    +category: ProductCategory
+    +baseUnit: String
+    +stock: double
+    +averageCost: double
+    +minimumStock: double
+    +lowStock: bool
+    +stockValue: double
+  }
+
+  class PurchaseEntry {
+    +date: DateTime
+    +supplier: String
+    +purchasedQuantity: double
+    +purchaseUnit: String
+    +baseQuantity: double
+    +totalPrice: double
+    +unitPrice: double
+  }
+
+  class InventoryMovement {
+    +date: DateTime
+    +type: InventoryMovementType
+    +quantity: double
+    +unitCost: double
+    +totalCost: double
+    +referenceType: String
+  }
+
+  class FeedFormula {
+    +name: String
+    +stage: String
+    +version: int
+    +active: bool
+    +percentageSum: double
+  }
+
+  class FormulaIngredient {
+    +productId: String
+    +productName: String
+    +percentage: double
+  }
+
+  class PreparedFoodBatch {
+    +code: String
+    +producedKg: double
+    +availableKg: double
+    +totalCost: double
+    +costPerKg: double
+  }
+
+  class PreparationIngredient {
+    +productId: String
+    +quantityKg: double
+    +unitCost: double
+    +totalCost: double
+  }
+
+  class ConsumptionRecord {
+    +date: DateTime
+    +target: ConsumptionTarget
+    +stage: String
+    +quantity: double
+    +baseQuantity: double
+    +totalCost: double
+    +lotId: String
+    +corral: String
+    +animalId: String
+  }
+
+  class ManagementProtocol {
+    +name: String
+    +stage: String
+    +recommendedDay: int
+    +quantity: double
+    +unit: String
+    +appliesTo: ConsumptionTarget
+  }
+}
+
+package "Produccion, costos y ventas" #FFF4DD {
+  class ProductionLot {
+    +code: String
+    +motherId: String
+    +birthDate: DateTime
+    +bornAlive: int
+    +weaned: int
+    +currentAnimals: int
+    +currentStage: String
+    +currentLocation: String
+    +accumulatedCost: double
+    +costPerLiveAnimal: double
+    +costPerKg: double
+  }
+
+  class CostLine {
+    +date: DateTime
+    +stage: String
+    +category: ProductCategory
+    +description: String
+    +amount: double
+  }
+
+  class ProductiveMovement {
+    +date: DateTime
+    +originStage: String
+    +destinationStage: String
+    +movedAnimals: int
+  }
+
+  class ReproductiveCycle {
+    +motherId: String
+    +serviceDate: DateTime
+    +estimatedFarrowingDate: DateTime
+    +realFarrowingDate: DateTime?
+    +status: String
+    +gestationCost: double
+  }
+
+  class MortalityRecord {
+    +date: DateTime
+    +stage: String
+    +deadCount: int
+    +cause: String
+  }
+
+  class SaleRecord {
+    +date: DateTime
+    +soldAnimals: int
+    +totalWeight: double
+    +averageWeight: double
+    +pricePerKg: double
+    +totalSale: double
+    +buyer: String
+  }
+}
+
+package "Aplicacion y persistencia" #ECEAF8 {
+  class ProductionCostRepository <<Repository>> {
+    +initializePersistence()
+    +createProduct()
+    +registerPurchase()
+    +adjustInventory()
+    +createFormula()
+    +prepareFood()
+    +registerConsumption()
+    +registerMortality()
+    +registerSale()
+    +moveLot()
+  }
+
+  class ProductionCostService <<Domain Service>> {
+    +weightedAverageCost(): double
+    +costPerKg(): double
+    +costPerLiveAnimal(): double
+    +suggestedPrice(): double
+    +weightedSectorCost(): double
+  }
+
+  class LocalDatabase <<SQLite>> {
+    +initialize()
+    +readSnapshot(moduleKey)
+    +writeSnapshot(moduleKey, payload)
+    +upsertEntity(type, id, payload)
+    +deleteEntity(type, id)
+    +pendingSyncCount(): int
+  }
+
+  class DatabaseTarget {
+    +factory: DatabaseFactory
+    +path: String
+  }
+
+  class SyncOutbox <<SQLite table>> {
+    +entityType: String
+    +entityId: String
+    +operation: String
+    +payloadJson: String
+    +attemptCount: int
+    +lastError: String?
+  }
+
+  class ApiSincronizacion <<Futuro>>
+  class PostgreSQL <<Futuro>>
+  class DataWarehouse <<Futuro>>
+}
+
+CabanaApp *-- CabanaShell
+CabanaShell o-- FarmMapPage
+FarmMapPage ..> Maternity3DPage : navega
+Maternity3DPage *-- MaternityModelViewer
+Maternity3DPage ..> GestationCrate : CRUD de jaulas
+GalponInventoryPage --> ProductionCostRepository
+
+GestationCrate --> ReproductiveStatus
+GestationCrate "1" o-- "0..1" FarrowingRecord
+GestationCrate "1" o-- "0..1" AbortionRecord
+GestationCrate "0..*" ..> "0..*" BoarRecord : registra monta
+SynchronizationBatch "1" ..> "1..10" GestationCrate : selecciona por arete
+FarrowingRecord ..> ProductionLot : origina lote
+
+Product "0..*" *-- "1" SyncFields
+PurchaseEntry "0..*" *-- "1" SyncFields
+InventoryMovement "0..*" *-- "1" SyncFields
+Product --> ProductCategory
+PurchaseEntry --> Product
+InventoryMovement --> Product
+InventoryMovement --> InventoryMovementType
+FeedFormula "1" *-- "1..*" FormulaIngredient
+FormulaIngredient --> Product
+PreparedFoodBatch "1" *-- "1..*" PreparationIngredient
+PreparedFoodBatch --> FeedFormula
+PreparationIngredient --> Product
+ConsumptionRecord --> ConsumptionTarget
+ConsumptionRecord --> Product
+ManagementProtocol --> Product
+ManagementProtocol --> ConsumptionTarget
+
+ProductionLot "1" *-- "0..*" CostLine
+CostLine --> ProductCategory
+ProductiveMovement --> ProductionLot
+ReproductiveCycle ..> ProductionLot
+ConsumptionRecord --> ProductionLot
+MortalityRecord --> ProductionLot
+SaleRecord --> ProductionLot
+
+ProductionCostRepository o-- Product
+ProductionCostRepository o-- PurchaseEntry
+ProductionCostRepository o-- InventoryMovement
+ProductionCostRepository o-- FeedFormula
+ProductionCostRepository o-- PreparedFoodBatch
+ProductionCostRepository o-- ProductionLot
+ProductionCostRepository o-- ConsumptionRecord
+ProductionCostRepository o-- ManagementProtocol
+ProductionCostRepository o-- MortalityRecord
+ProductionCostRepository o-- SaleRecord
+ProductionCostRepository --> ProductionCostService
+ProductionCostRepository --> LocalDatabase : guarda snapshot
+
+LocalDatabase *-- DatabaseTarget
+LocalDatabase *-- SyncOutbox : genera pendientes
+SyncOutbox ..> ApiSincronizacion : envia al conectarse
+ApiSincronizacion ..> PostgreSQL : sincroniza
+PostgreSQL ..> DataWarehouse : consolida indicadores
+
+note right of ProductionCostService
+  Reglas economicas principales:
+  * Costo promedio ponderado del inventario.
+  * Costo acumulado por lote y etapa.
+  * Costo por animal vivo y por kg producido.
+  * Precio sugerido = costo por kg + margen.
+end note
+
+note bottom of LocalDatabase
+  Base offline por dispositivo.
+  Configuracion inicial:
+  * Moneda: BOB / Bs
+  * Quintal: 46 kg
+  * Zona: America/La_Paz
+  * Cabana: La Pampita
+end note
+@enduml

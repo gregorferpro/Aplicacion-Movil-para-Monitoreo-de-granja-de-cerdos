@@ -1,0 +1,512 @@
+[ +104 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[   +3 ms] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[        ] executing: [C:\flutter/] git -c log.showSignature=false log HEAD -n 1 --pretty=format:%ad --date=iso
+[  +46 ms] Exit code 0 from: git -c log.showSignature=false log HEAD -n 1 --pretty=format:%ad --date=iso
+[        ] 2026-05-29 12:13:22 -0400
+[  +11 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[  +45 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[   +3 ms] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[  +17 ms] Skipping pub get: version match.
+[  +76 ms] Found plugin webview_flutter_wkwebview at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_wkwebview-3.26.0\
+[   +7 ms] Found plugin webview_flutter_android at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.13.0\
+[   +2 ms] Found plugin webview_flutter at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter-4.14.0\
+[   +2 ms] Found plugin url_launcher at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher-6.3.2\
+[   +2 ms] Found plugin url_launcher_windows at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_windows-3.1.5\
+[   +3 ms] Found plugin url_launcher_web at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_web-2.4.3\
+[   +4 ms] Found plugin url_launcher_macos at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_macos-3.2.5\
+[   +1 ms] Found plugin url_launcher_linux at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_linux-3.2.2\
+[   +2 ms] Found plugin url_launcher_ios at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_ios-6.4.1\
+[   +1 ms] Found plugin url_launcher_android at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_android-6.3.32\
+[   +1 ms] Found plugin android_intent_plus at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\android_intent_plus-6.0.0\
+[  +58 ms] Found plugin webview_flutter_wkwebview at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_wkwebview-3.26.0\
+[   +3 ms] Found plugin webview_flutter_android at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.13.0\
+[   +1 ms] Found plugin webview_flutter at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter-4.14.0\
+[   +1 ms] Found plugin url_launcher at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher-6.3.2\
+[   +1 ms] Found plugin url_launcher_windows at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_windows-3.1.5\
+[   +2 ms] Found plugin url_launcher_web at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_web-2.4.3\
+[   +1 ms] Found plugin url_launcher_macos at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_macos-3.2.5\
+[        ] Found plugin url_launcher_linux at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_linux-3.2.2\
+[        ] Found plugin url_launcher_ios at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_ios-6.4.1\
+[        ] Found plugin url_launcher_android at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_android-6.3.32\
+[   +1 ms] Found plugin android_intent_plus at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\android_intent_plus-6.0.0\
+[   +9 ms] Skipping generating web_plugin_registrant.dart because it is up-to-date.
+[  +23 ms] Found plugin webview_flutter_wkwebview at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_wkwebview-3.26.0\
+[   +2 ms] Found plugin webview_flutter_android at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.13.0\
+[   +1 ms] Found plugin webview_flutter at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter-4.14.0\
+[   +1 ms] Found plugin url_launcher at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher-6.3.2\
+[        ] Found plugin url_launcher_windows at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_windows-3.1.5\
+[   +1 ms] Found plugin url_launcher_web at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_web-2.4.3\
+[   +1 ms] Found plugin url_launcher_macos at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_macos-3.2.5\
+[   +1 ms] Found plugin url_launcher_linux at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_linux-3.2.2\
+[        ] Found plugin url_launcher_ios at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_ios-6.4.1\
+[        ] Found plugin url_launcher_android at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_android-6.3.32\
+[        ] Found plugin android_intent_plus at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\android_intent_plus-6.0.0\
+[   +5 ms] Generating C:\cabana_cerdos_app\android\app\src\main\java\io\flutter\plugins\GeneratedPluginRegistrant.java
+[   +2 ms] Skipping generating GeneratedPluginRegistrant.java because it is up-to-date.
+[   +5 ms] Skipping generating generated_plugin_registrant.h because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugin_registrant.cc because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugins.cmake because it is up-to-date.
+[   +3 ms] Skipping generating generated_plugin_registrant.h because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugin_registrant.cc because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugins.cmake because it is up-to-date.
+[   +3 ms] Skipping generating GeneratedPluginRegistrant.h because it is up-to-date.
+[   +1 ms] Skipping generating GeneratedPluginRegistrant.m because it is up-to-date.
+[   +2 ms] Skipping generating GeneratedPluginRegistrant.swift because it is up-to-date.
+[ +104 ms] executing: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe -format json -products * -utf8 -latest -version 16 -requires Microsoft.VisualStudio.Workload.NativeDesktop Microsoft.VisualStudio.Component.VC.Tools.x86.x64 Microsoft.VisualStudio.Component.VC.CMake.Project
+[  +45 ms] Exit code 0 from: C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe -format json -products * -utf8 -latest -version 16 -requires Microsoft.VisualStudio.Workload.NativeDesktop Microsoft.VisualStudio.Component.VC.Tools.x86.x64 Microsoft.VisualStudio.Component.VC.CMake.Project
+[        ] [
+             {
+               "instanceId": "bbab54a6",
+               "installDate": "2026-06-10T05:09:57Z",
+               "installationName": "VisualStudio/18.7.0+11903.348",
+               "installationPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community",
+               "installationVersion": "18.7.11903.348",
+               "productId": "Microsoft.VisualStudio.Product.Community",
+               "productPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\devenv.exe",
+               "state": 4294967295,
+               "isComplete": true,
+               "isLaunchable": true,
+               "isPrerelease": false,
+               "isRebootRequired": false,
+               "displayName": "Visual Studio Community 2026",
+               "description": "Everything you need to build modern apps – free for you, built for impact.",
+               "channelId": "VisualStudio.18.Release",
+               "channelUri": "https://aka.ms/vs/18/stable/channel",
+               "enginePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service",
+               "expirationDate": "2026-09-01T17:00:00+00:00",
+               "installedChannelId": "VisualStudio.18.Release",
+               "installedChannelUri": "https://aka.ms/vs/18/stable/channel",
+               "releaseNotes": "https://docs.microsoft.com/en-us/visualstudio/releases/18/release-notes-v18.7#18.7.0",
+               "resolvedInstallationPath": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community",
+               "retirementDate": "2026-11-30T17:00:00+00:00",
+               "thirdPartyNotices": "https://go.microsoft.com/fwlink/?LinkId=661480",
+               "updateDate": "2026-06-10T05:09:57.6155396Z",
+               "catalog": {
+                 "buildBranch": "stable",
+                 "buildVersion": "18.7.11903.348",
+                 "featureReleaseMonth": "06",
+                 "featureReleaseYear": "2026",
+                 "id": "VisualStudio/18.7.0+11903.348",
+                 "includeBuildVersionInDisplayVersion": "False",
+                 "localBuild": "build-lab",
+                 "manifestName": "VisualStudio",
+                 "manifestType": "installer",
+                 "productDisplayVersion": "18.7.0",
+                 "productLine": "Dev18",
+                 "productLineVersion": "18",
+                 "productMilestone": "RTW",
+                 "productMilestoneIsPreRelease": "False",
+                 "productName": "Visual Studio",
+                 "productPatchVersion": "0",
+                 "productPreReleaseMilestoneSuffix": "4.0",
+                 "productRelease": "RTW",
+                 "productSemanticVersion": "18.7.0+11903.348",
+                 "requiredEngineVersion": "4.7.25.22189"
+               },
+               "properties": {
+                 "campaignId": "2500:eac7353f7c564fc881849d7f7084a4b2",
+                 "channelManifestId": "VisualStudio.18.Release/18.7.0+11903.348",
+                 "includeRecommended": "1",
+                 "nickname": "",
+                 "setupEngineFilePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\setup.exe"
+               }
+             }
+           ]
+[   +5 ms] Building Windows application...
+[   +3 ms] executing: C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe -S C:\cabana_cerdos_app\windows -B C:\cabana_cerdos_app\build\windows\x64 -G Visual Studio 18 2026 -A x64 -DFLUTTER_TARGET_PLATFORM=windows-x64
+[  +50 ms] -- Selecting Windows SDK version 10.0.28000.0 to target Windows 10.0.22631.
+[+1035 ms] -- The CXX compiler identification is MSVC 19.51.36247.0
+[  +28 ms] -- Detecting CXX compiler ABI info
+[ +666 ms] -- Detecting CXX compiler ABI info - done
+[  +34 ms] -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe - skipped
+[        ] -- Detecting CXX compile features
+[        ] -- Detecting CXX compile features - done
+[  +12 ms] -- Configuring done (1.8s)
+[  +80 ms] -- Generating done (0.1s)
+[  +23 ms] -- Build files have been written to: C:/cabana_cerdos_app/build/windows/x64
+[  +16 ms] executing: C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe --build C:\cabana_cerdos_app\build\windows\x64 --config Release --target INSTALL --verbose
+[  +53 ms] Change Dir: 'C:/cabana_cerdos_app/build/windows/x64'
+[   +1 ms] Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" INSTALL.vcxproj /p:Configuration=Release /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+[  +50 ms] Versión de MSBuild 18.7.1+024f5b037 para .NET Framework
+[  +30 ms] Compilación iniciada a las 3/7/2026 22:32:09.
+[ +177 ms] Proyecto "C:\cabana_cerdos_app\build\windows\x64\INSTALL.vcxproj" en nodo 1 (destinos predeterminados).
+[        ] El proyecto "C:\cabana_cerdos_app\build\windows\x64\INSTALL.vcxproj" (1) está compilando "C:\cabana_cerdos_app\build\windows\x64\ZERO_CHECK.vcxproj" (2) en el nodo 1 (destinos predeterminados).
+[        ] PrepareForBuild:
+[        ]   Creando directorio "x64\Release\ZERO_CHECK\".
+[   +7 ms]   La salida estructurada está habilitada. El formato del diagnóstico del compilador reflejará la jerarquía de errores. Consulte https://aka.ms/cpp/structured-output para obtener más detalles.
+[        ]   Creando directorio "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\".
+[   +3 ms] InitializeBuildStatus:
+[        ]   Se creará "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild" porque se especificó "AlwaysCreate".
+[        ]   Aplicando tarea Touch a "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild".
+[  +80 ms] CustomBuild:
+[        ]   1>Checking Build System
+[  +55 ms] FinalizeBuildStatus:
+[        ]   Se eliminará el archivo "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\unsuccessfulbuild".
+[        ]   Aplicando tarea Touch a "x64\Release\ZERO_CHECK\ZERO_CHECK.tlog\ZERO_CHECK.lastbuildstate".
+[   +3 ms] Compilación del proyecto terminada "C:\cabana_cerdos_app\build\windows\x64\ZERO_CHECK.vcxproj" (destinos predeterminados).
+[  +84 ms] El proyecto "C:\cabana_cerdos_app\build\windows\x64\INSTALL.vcxproj" (1) está compilando "C:\cabana_cerdos_app\build\windows\x64\ALL_BUILD.vcxproj" (3) en el nodo 1 (destinos predeterminados).
+[        ] El proyecto "C:\cabana_cerdos_app\build\windows\x64\ALL_BUILD.vcxproj" (3) está compilando "C:\cabana_cerdos_app\build\windows\x64\runner\cabana_cerdos_app.vcxproj" (4) en el nodo 1 (destinos predeterminados).
+[        ] El proyecto "C:\cabana_cerdos_app\build\windows\x64\runner\cabana_cerdos_app.vcxproj" (4) está compilando "C:\cabana_cerdos_app\build\windows\x64\flutter\flutter_assemble.vcxproj" (5) en el nodo 1 (destinos predeterminados).
+[        ] PrepareForBuild:
+[        ]   Creando directorio "x64\Release\flutter_assemble\".
+[   +2 ms]   La salida estructurada está habilitada. El formato del diagnóstico del compilador reflejará la jerarquía de errores. Consulte https://aka.ms/cpp/structured-output para obtener más detalles.
+[        ]   Creando directorio "x64\Release\flutter_assemble\flutter_assemble.tlog\".
+[   +1 ms] InitializeBuildStatus:
+[        ]   Se creará "x64\Release\flutter_assemble\flutter_assemble.tlog\unsuccessfulbuild" porque se especificó "AlwaysCreate".
+[        ]   Aplicando tarea Touch a "x64\Release\flutter_assemble\flutter_assemble.tlog\unsuccessfulbuild".
+[        ] ComputeCustomBuildOutput:
+[        ]   Creando directorio "C:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\".
+[   +1 ms] CustomBuild:
+[        ]   'La compilación de "C:\cabana_cerdos_app\build\windows\x64\CMakeFiles\c6fed3dbbd24f43e3959fea71585a2e4\flutter_assemble.rule" depende de "C:\CABANA_CERDOS_APP\WINDOWS\FLUTTER\EPHEMERAL\FLUTTER_WINDOWS.DLL", que se genera por la compilación de "C:\cabana_cerdos_app\build\windows\x64\CMakeFiles\3185b3f08191ff80f157c630cba98e75\flutter_windows.dll.rule". Los elementos no se pueden compilar en paralelo.'
+[  +32 ms]   Generating C:/cabana_cerdos_app/windows/flutter/ephemeral/flutter_windows.dll, C:/cabana_cerdos_app/windows/flutter/ephemeral/flutter_export.h, C:/cabana_cerdos_app/windows/flutter/ephemeral/flutter_windows.h, C:/cabana_cerdos_app/windows/flutter/ephemeral/flutter_messenger.h, C:/cabana_cerdos_app/windows/flutter/ephemeral/flutter_plugin_registrar.h, C:/cabana_cerdos_app/windows/flutter/ephemeral/flutter_texture_registrar.h, C:/cabana_cerdos_app/windows/flutter/ephemeral/cpp_client_wrapper/core_implementations.cc, C:/cabana_cerdos_app/windows/flutter/ephemeral/cpp_client_wrapper/standard_codec.cc, C:/cabana_cerdos_app/windows/flutter/ephemeral/cpp_client_wrapper/plugin_registrar.cc, C:/cabana_cerdos_app/windows/flutter/ephemeral/cpp_client_wrapper/flutter_engine.cc, C:/cabana_cerdos_app/windows/flutter/ephemeral/cpp_client_wrapper/flutter_view_controller.cc, _phony_
+[ +873 ms]   [  +97 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[   +1 ms]   [   +7 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[   +1 ms]   [   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[  +42 ms]   [  +42 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ]   [   +1 ms] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ]   [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[  +28 ms]   [  +28 ms] Initializing file store
+[  +23 ms]   [  +23 ms] dart_build: Starting due to {}
+[   +1 ms]   [   +2 ms] Skipping target: gen_localizations
+[   +2 ms]   [   +1 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: C:\cabana_cerdos_app\.dart_tool\package_config.json}
+[   +2 ms]   [   +2 ms] unpack_windows: Starting due to {}
+[ +155 ms]   [ +155 ms] unpack_windows: Complete
+[+2429 ms]   [+2430 ms] No packages with native assets. Skipping native assets compilation.
+[   +3 ms]   [   +3 ms] dart_build: Complete
+[   +6 ms]   [   +6 ms] install_code_assets: Starting due to {}
+[   +9 ms]   [   +9 ms] Writing native assets json to file:///C:/cabana_cerdos_app/.dart_tool/flutter_build/ff0c9692ea53ec897a9e5fb6df8f4671/native_assets.json.
+[   +2 ms]   [   +2 ms] Writing C:\cabana_cerdos_app\.dart_tool\flutter_build\ff0c9692ea53ec897a9e5fb6df8f4671\native_assets.json done.
+[   +1 ms]   [   +1 ms] install_code_assets: Complete
+[  +24 ms]   [  +24 ms] Found plugin webview_flutter_wkwebview at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_wkwebview-3.26.0\
+[   +5 ms]   [   +5 ms] Found plugin webview_flutter_android at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.13.0\
+[   +1 ms]   [   +1 ms] Found plugin webview_flutter at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter-4.14.0\
+[   +3 ms]   [   +2 ms] Found plugin url_launcher at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher-6.3.2\
+[   +1 ms]   [   +1 ms] Found plugin url_launcher_windows at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_windows-3.1.5\
+[   +3 ms]   [   +3 ms] Found plugin url_launcher_web at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_web-2.4.3\
+[   +2 ms]   [   +2 ms] Found plugin url_launcher_macos at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_macos-3.2.5\
+[   +1 ms]   [   +1 ms] Found plugin url_launcher_linux at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_linux-3.2.2\
+[   +1 ms]   [   +1 ms] Found plugin url_launcher_ios at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_ios-6.4.1\
+[        ]   [        ] Found plugin url_launcher_android at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_android-6.3.32\
+[   +1 ms]   [        ] Found plugin android_intent_plus at C:\Users\asus f17\AppData\Local\Pub\Cache\hosted\pub.dev\android_intent_plus-6.0.0\
+[  +18 ms]   [  +18 ms] gen_dart_plugin_registrant: Complete
+[   +2 ms]   [   +2 ms] kernel_snapshot_program: Starting due to {}
+[   +9 ms]   [   +9 ms] C:\flutter\bin\cache\dart-sdk\bin\dartaotruntime.exe C:\flutter\bin\cache\dart-sdk\bin\snapshots\frontend_server_aot.dart.snapshot --sdk-root C:\flutter\bin\cache\artifacts\engine\common\flutter_patched_sdk_product/ --target=flutter --no-print-incremental-dependencies -DFLUTTER_VERSION=3.44.1 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=924134a44c -DFLUTTER_ENGINE_REVISION=c416acfeb8 -DFLUTTER_DART_VERSION=3.12.1 -Ddart.vm.profile=false -Ddart.vm.product=true --delete-tostring-package-uri=dart:ui --delete-tostring-package-uri=package:flutter --aot --tfa --target-os windows --packages C:\cabana_cerdos_app\.dart_tool\package_config.json --output-dill C:\cabana_cerdos_app\.dart_tool\flutter_build\ff0c9692ea53ec897a9e5fb6df8f4671\app.dill --depfile C:\cabana_cerdos_app\.dart_tool\flutter_build\ff0c9692ea53ec897a9e5fb6df8f4671\kernel_snapshot_program.d --source file:///C:/cabana_cerdos_app/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///C:/cabana_cerdos_app/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error package:cabana_cerdos_app/main.dart
+[+8894 ms]   [+8894 ms] kernel_snapshot_program: Complete
+[ +414 ms]   [ +413 ms] aot_elf_release: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: C:\flutter\packages\flutter_tools\lib\src\build_system\targets\common.dart,D:\Caba├▒a\cabana_cerdos_app\.dart_tool\flutter_build\ff0c9692ea53ec897a9e5fb6df8f4671\app.dill,C:\flutter\bin\cache\engine.stamp,C:\flutter\bin\cache\engine.stamp,C:\flutter\bin\cache\engine.stamp, InvalidatedReasonKind.outputSetAddition: The following outputs were added to the output set: D:\Caba├▒a\cabana_cerdos_app\.dart_tool\flutter_build\ff0c9692ea53ec897a9e5fb6df8f4671\app.so}
+[   +1 ms]   [   +2 ms] targetingApplePlatform = false
+[        ]   [        ] extractAppleDebugSymbols = true
+[        ]   [        ] targetingAndroidPlatform = false
+[        ]   [        ] Will strip AOT snapshot during build.
+[        ]   [        ] executing: C:\flutter\bin\cache\artifacts\engine\windows-x64-release\gen_snapshot --deterministic --snapshot_kind=app-aot-elf --elf=C:\cabana_cerdos_app\.dart_tool\flutter_build\ff0c9692ea53ec897a9e5fb6df8f4671\app.so --strip C:\cabana_cerdos_app\.dart_tool\flutter_build\ff0c9692ea53ec897a9e5fb6df8f4671\app.dill
+[+5809 ms]   [+5809 ms] aot_elf_release: Complete
+[  +21 ms]   [  +21 ms] windows_aot_bundle: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: D:\Caba├▒a\cabana_cerdos_app\.dart_tool\flutter_build\ff0c9692ea53ec897a9e5fb6df8f4671\app.so, InvalidatedReasonKind.outputSetAddition: The following outputs were added to the output set: D:\Caba├▒a\cabana_cerdos_app\build\windows\app.so}
+[   +3 ms]   [   +3 ms] windows_aot_bundle: Complete
+[  +27 ms]   [  +27 ms] release_bundle_windows-x64_assets: Starting due to {}
+[  +76 ms]   [  +76 ms] impellerc command: [C:\flutter\bin\cache\artifacts\engine\windows-x64\impellerc.exe, --sksl, --runtime-stage-gles, --runtime-stage-gles3, --runtime-stage-vulkan, --iplr, --sl=C:\cabana_cerdos_app\build\flutter_assets\shaders/ink_sparkle.frag, --spirv=C:\cabana_cerdos_app\build\flutter_assets\shaders/ink_sparkle.frag.spirv, --input=C:\flutter\packages\flutter\lib\src\material\shaders\ink_sparkle.frag, --input-type=frag, --include=C:\flutter\packages\flutter\lib\src\material\shaders, --include=C:\flutter\bin\cache\artifacts\engine\windows-x64\shader_lib]
+[        ]   [   +1 ms] impellerc command: [C:\flutter\bin\cache\artifacts\engine\windows-x64\impellerc.exe, --sksl, --runtime-stage-gles, --runtime-stage-gles3, --runtime-stage-vulkan, --iplr, --sl=C:\cabana_cerdos_app\build\flutter_assets\shaders/stretch_effect.frag, --spirv=C:\cabana_cerdos_app\build\flutter_assets\shaders/stretch_effect.frag.spirv, --input=C:\flutter\packages\flutter\lib\src\material\shaders\stretch_effect.frag, --input-type=frag, --include=C:\flutter\packages\flutter\lib\src\material\shaders, --include=C:\flutter\bin\cache\artifacts\engine\windows-x64\shader_lib]
+[ +609 ms]   [ +608 ms] release_bundle_windows-x64_assets: Complete
+[ +145 ms]   [ +145 ms] Persisting file store
+[   +6 ms]   [   +6 ms] Done persisting file store
+[  +12 ms]   [  +12 ms] build succeeded.
+[        ]   [        ] "flutter assemble" took 18.824ms.
+[  +62 ms]   [  +62 ms] Running 1 shutdown hook
+[   +1 ms]   [   +1 ms] Shutdown hooks complete
+[ +253 ms]   [ +253 ms] exiting with code 0
+[  +55 ms]   Building Custom Rule C:/cabana_cerdos_app/windows/flutter/CMakeLists.txt
+[  +34 ms] FinalizeBuildStatus:
+[        ]   Se eliminará el archivo "x64\Release\flutter_assemble\flutter_assemble.tlog\unsuccessfulbuild".
+[        ]   Aplicando tarea Touch a "x64\Release\flutter_assemble\flutter_assemble.tlog\flutter_assemble.lastbuildstate".
+[   +1 ms] Compilación del proyecto terminada "C:\cabana_cerdos_app\build\windows\x64\flutter\flutter_assemble.vcxproj" (destinos predeterminados).
+[  +22 ms] El proyecto "C:\cabana_cerdos_app\build\windows\x64\runner\cabana_cerdos_app.vcxproj" (4) está compilando "C:\cabana_cerdos_app\build\windows\x64\flutter\flutter_wrapper_app.vcxproj" (6) en el nodo 1 (destinos predeterminados).
+[        ] PrepareForBuild:
+[        ]   La salida estructurada está habilitada. El formato del diagnóstico del compilador reflejará la jerarquía de errores. Consulte https://aka.ms/cpp/structured-output para obtener más detalles.
+[        ]   Creando directorio "C:\cabana_cerdos_app\build\windows\x64\flutter\Release\".
+[        ]   Creando directorio "flutter_wrapper_app.dir\Release\flutter_.0B2BB6E9.tlog\".
+[   +1 ms] InitializeBuildStatus:
+[        ]   Se creará "flutter_wrapper_app.dir\Release\flutter_.0B2BB6E9.tlog\unsuccessfulbuild" porque se especificó "AlwaysCreate".
+[        ]   Aplicando tarea Touch a "flutter_wrapper_app.dir\Release\flutter_.0B2BB6E9.tlog\unsuccessfulbuild".
+[  +30 ms] CustomBuild:
+[        ]   Building Custom Rule C:/cabana_cerdos_app/windows/flutter/CMakeLists.txt
+[  +72 ms] ClCompile:
+[        ]   C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /IC:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\include /IC:\cabana_cerdos_app\windows\flutter\ephemeral /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /EHsc /MD /GR /std:c++17 /Fo"flutter_wrapper_app.dir\Release\\" /Fd"C:\cabana_cerdos_app\build\windows\x64\flutter\Release\flutter_wrapper_app.pdb" /external:W4 /TP /wd4100 /errorReport:queue C:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc C:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc C:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\flutter_engine.cc C:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\flutter_view_controller.cc
+[  +40 ms]   core_implementations.cc
+[ +775 ms]   standard_codec.cc
+[ +894 ms]   flutter_engine.cc
+[ +885 ms]   flutter_view_controller.cc
+[ +865 ms]   Generando código...
+[+1037 ms] Lib:
+[        ]   C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"C:\cabana_cerdos_app\build\windows\x64\flutter\Release\flutter_wrapper_app.lib" /NOLOGO /MACHINE:X64  /machine:x64 flutter_wrapper_app.dir\Release\core_implementations.obj
+[        ]   flutter_wrapper_app.dir\Release\standard_codec.obj
+[        ]   flutter_wrapper_app.dir\Release\flutter_engine.obj
+[        ]   flutter_wrapper_app.dir\Release\flutter_view_controller.obj
+[  +72 ms]   flutter_wrapper_app.vcxproj -> C:\cabana_cerdos_app\build\windows\x64\flutter\Release\flutter_wrapper_app.lib
+[  +16 ms] FinalizeBuildStatus:
+[        ]   Se eliminará el archivo "flutter_wrapper_app.dir\Release\flutter_.0B2BB6E9.tlog\unsuccessfulbuild".
+[        ]   Aplicando tarea Touch a "flutter_wrapper_app.dir\Release\flutter_.0B2BB6E9.tlog\flutter_wrapper_app.lastbuildstate".
+[        ] Compilación del proyecto terminada "C:\cabana_cerdos_app\build\windows\x64\flutter\flutter_wrapper_app.vcxproj" (destinos predeterminados).
+[  +37 ms] El proyecto "C:\cabana_cerdos_app\build\windows\x64\runner\cabana_cerdos_app.vcxproj" (4) está compilando "C:\cabana_cerdos_app\build\windows\x64\plugins\url_launcher_windows\url_launcher_windows_plugin.vcxproj" (7) en el nodo 1 (destinos predeterminados).
+[        ] El proyecto "C:\cabana_cerdos_app\build\windows\x64\plugins\url_launcher_windows\url_launcher_windows_plugin.vcxproj" (7) está compilando "C:\cabana_cerdos_app\build\windows\x64\flutter\flutter_wrapper_plugin.vcxproj" (8) en el nodo 1 (destinos predeterminados).
+[        ] PrepareForBuild:
+[        ]   La salida estructurada está habilitada. El formato del diagnóstico del compilador reflejará la jerarquía de errores. Consulte https://aka.ms/cpp/structured-output para obtener más detalles.
+[        ]   Creando directorio "flutter_wrapper_plugin.dir\Release\flutter_.20007489.tlog\".
+[   +1 ms] InitializeBuildStatus:
+[        ]   Se creará "flutter_wrapper_plugin.dir\Release\flutter_.20007489.tlog\unsuccessfulbuild" porque se especificó "AlwaysCreate".
+[        ]   Aplicando tarea Touch a "flutter_wrapper_plugin.dir\Release\flutter_.20007489.tlog\unsuccessfulbuild".
+[  +30 ms] CustomBuild:
+[        ]   Building Custom Rule C:/cabana_cerdos_app/windows/flutter/CMakeLists.txt
+[  +31 ms] ClCompile:
+[        ]   C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /IC:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\include /IC:\cabana_cerdos_app\windows\flutter\ephemeral /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /EHsc /MD /GR /std:c++17 /Fo"flutter_wrapper_plugin.dir\Release\\" /Fd"C:\cabana_cerdos_app\build\windows\x64\flutter\Release\flutter_wrapper_plugin.pdb" /external:W4 /TP /wd4100 /errorReport:queue C:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc C:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc C:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\plugin_registrar.cc
+[  +36 ms]   core_implementations.cc
+[ +788 ms]   standard_codec.cc
+[ +885 ms]   plugin_registrar.cc
+[ +504 ms]   Generando código...
+[+1067 ms] Lib:
+[        ]   C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\Lib.exe /OUT:"C:\cabana_cerdos_app\build\windows\x64\flutter\Release\flutter_wrapper_plugin.lib" /NOLOGO /MACHINE:X64  /machine:x64 flutter_wrapper_plugin.dir\Release\core_implementations.obj
+[        ]   flutter_wrapper_plugin.dir\Release\standard_codec.obj
+[        ]   flutter_wrapper_plugin.dir\Release\plugin_registrar.obj
+[  +69 ms]   flutter_wrapper_plugin.vcxproj -> C:\cabana_cerdos_app\build\windows\x64\flutter\Release\flutter_wrapper_plugin.lib
+[   +7 ms] FinalizeBuildStatus:
+[        ]   Se eliminará el archivo "flutter_wrapper_plugin.dir\Release\flutter_.20007489.tlog\unsuccessfulbuild".
+[        ]   Aplicando tarea Touch a "flutter_wrapper_plugin.dir\Release\flutter_.20007489.tlog\flutter_wrapper_plugin.lastbuildstate".
+[        ] Compilación del proyecto terminada "C:\cabana_cerdos_app\build\windows\x64\flutter\flutter_wrapper_plugin.vcxproj" (destinos predeterminados).
+[   +5 ms] PrepareForBuild:
+[        ]   La salida estructurada está habilitada. El formato del diagnóstico del compilador reflejará la jerarquía de errores. Consulte https://aka.ms/cpp/structured-output para obtener más detalles.
+[        ]   Creando directorio "C:\cabana_cerdos_app\build\windows\x64\plugins\url_launcher_windows\Release\".
+[        ]   Creando directorio "url_launcher_windows_plugin.dir\Release\url_laun.BCCBCCFC.tlog\".
+[   +1 ms] InitializeBuildStatus:
+[        ]   Se creará "url_launcher_windows_plugin.dir\Release\url_laun.BCCBCCFC.tlog\unsuccessfulbuild" porque se especificó "AlwaysCreate".
+[        ]   Aplicando tarea Touch a "url_launcher_windows_plugin.dir\Release\url_laun.BCCBCCFC.tlog\unsuccessfulbuild".
+[  +30 ms] CustomBuild:
+[        ]   Building Custom Rule C:/cabana_cerdos_app/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/windows/CMakeLists.txt
+[  +37 ms] ClCompile:
+[        ]   C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /IC:\cabana_cerdos_app\windows\flutter\ephemeral /IC:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\include /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _WINDLL /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D FLUTTER_PLUGIN_IMPL /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /D url_launcher_windows_plugin_EXPORTS /EHsc /MD /GR /std:c++17 /Fo"url_launcher_windows_plugin.dir\Release\\" /Fd"url_launcher_windows_plugin.dir\Release\vc145.pdb" /external:W4 /TP /wd4100 /errorReport:queue C:\cabana_cerdos_app\windows\flutter\ephemeral\.plugin_symlinks\url_launcher_windows\windows\url_launcher_windows.cpp C:\cabana_cerdos_app\windows\flutter\ephemeral\.plugin_symlinks\url_launcher_windows\windows\messages.g.cpp C:\cabana_cerdos_app\windows\flutter\ephemeral\.plugin_symlinks\url_launcher_windows\windows\system_apis.cpp C:\cabana_cerdos_app\windows\flutter\ephemeral\.plugin_symlinks\url_launcher_windows\windows\url_launcher_plugin.cpp
+[  +35 ms]   url_launcher_windows.cpp
+[+1046 ms]   messages.g.cpp
+[ +827 ms]   system_apis.cpp
+[ +300 ms]   url_launcher_plugin.cpp
+[+1098 ms]   Generando código...
+[+1037 ms] Link:
+[        ]   C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"C:\cabana_cerdos_app\build\windows\x64\plugins\url_launcher_windows\Release\url_launcher_windows_plugin.dll" /INCREMENTAL:NO /NOLOGO ..\..\flutter\Release\flutter_wrapper_plugin.lib shlwapi.lib C:\cabana_cerdos_app\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:/cabana_cerdos_app/build/windows/x64/plugins/url_launcher_windows/Release/url_launcher_windows_plugin.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/cabana_cerdos_app/build/windows/x64/plugins/url_launcher_windows/Release/url_launcher_windows_plugin.lib" /MACHINE:X64  /machine:x64 /DLL url_launcher_windows_plugin.dir\Release\url_launcher_windows.obj
+[        ]   url_launcher_windows_plugin.dir\Release\messages.g.obj
+[        ]   url_launcher_windows_plugin.dir\Release\system_apis.obj
+[        ]   url_launcher_windows_plugin.dir\Release\url_launcher_plugin.obj
+[  +50 ms]      Creando biblioteca C:/cabana_cerdos_app/build/windows/x64/plugins/url_launcher_windows/Release/url_launcher_windows_plugin.lib y objeto C:/cabana_cerdos_app/build/windows/x64/plugins/url_launcher_windows/Release/url_launcher_windows_plugin.exp
+[  +72 ms]   url_launcher_windows_plugin.vcxproj -> C:\cabana_cerdos_app\build\windows\x64\plugins\url_launcher_windows\Release\url_launcher_windows_plugin.dll
+[   +7 ms] FinalizeBuildStatus:
+[        ]   Se eliminará el archivo "url_launcher_windows_plugin.dir\Release\url_laun.BCCBCCFC.tlog\unsuccessfulbuild".
+[        ]   Aplicando tarea Touch a "url_launcher_windows_plugin.dir\Release\url_laun.BCCBCCFC.tlog\url_launcher_windows_plugin.lastbuildstate".
+[        ] Compilación del proyecto terminada "C:\cabana_cerdos_app\build\windows\x64\plugins\url_launcher_windows\url_launcher_windows_plugin.vcxproj" (destinos predeterminados).
+[   +7 ms] PrepareForBuild:
+[        ]   La salida estructurada está habilitada. El formato del diagnóstico del compilador reflejará la jerarquía de errores. Consulte https://aka.ms/cpp/structured-output para obtener más detalles.
+[        ]   Creando directorio "C:\cabana_cerdos_app\build\windows\x64\runner\Release\".
+[        ]   Creando directorio "cabana_cerdos_app.dir\Release\cabana_c.D9233152.tlog\".
+[   +3 ms] InitializeBuildStatus:
+[        ]   Se creará "cabana_cerdos_app.dir\Release\cabana_c.D9233152.tlog\unsuccessfulbuild" porque se especificó "AlwaysCreate".
+[        ]   Aplicando tarea Touch a "cabana_cerdos_app.dir\Release\cabana_c.D9233152.tlog\unsuccessfulbuild".
+[  +31 ms] CustomBuild:
+[        ]   Building Custom Rule C:/cabana_cerdos_app/windows/runner/CMakeLists.txt
+[  +32 ms] ClCompile:
+[        ]   C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\CL.exe /c /IC:\cabana_cerdos_app\windows /IC:\cabana_cerdos_app\windows\flutter\ephemeral /IC:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\include /IC:\cabana_cerdos_app\windows\flutter\ephemeral\.plugin_symlinks\url_launcher_windows\windows\include /nologo /W4 /WX /diagnostics:column /O2 /Ob2 /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D "FLUTTER_VERSION=\"1.0.0+1\"" /D FLUTTER_VERSION_MAJOR=1 /D FLUTTER_VERSION_MINOR=0 /D FLUTTER_VERSION_PATCH=0 /D FLUTTER_VERSION_BUILD=1 /D NOMINMAX /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\"Release\"" /EHsc /MD /GR /std:c++17 /Fo"cabana_cerdos_app.dir\Release\\" /Fd"cabana_cerdos_app.dir\Release\vc145.pdb" /external:W4 /TP /wd4100 /errorReport:queue C:\cabana_cerdos_app\windows\runner\flutter_window.cpp C:\cabana_cerdos_app\windows\runner\main.cpp C:\cabana_cerdos_app\windows\runner\utils.cpp C:\cabana_cerdos_app\windows\runner\win32_window.cpp C:\cabana_cerdos_app\windows\flutter\generated_plugin_registrant.cc
+[  +34 ms]   flutter_window.cpp
+[ +739 ms]   main.cpp
+[ +717 ms]   utils.cpp
+[ +711 ms]   win32_window.cpp
+[ +617 ms]   generated_plugin_registrant.cc
+[ +233 ms]   Generando código...
+[ +281 ms] ResourceCompile:
+[        ]   C:\Program Files (x86)\Windows Kits\10\bin\10.0.28000.0\x64\rc.exe /D _UNICODE /D UNICODE /D WIN32 /D _WINDOWS /D NDEBUG /D _HAS_EXCEPTIONS=0 /D "FLUTTER_VERSION=\\\"1.0.0+1\\\"" /D FLUTTER_VERSION_MAJOR=1 /D FLUTTER_VERSION_MINOR=0 /D FLUTTER_VERSION_PATCH=0 /D FLUTTER_VERSION_BUILD=1 /D NOMINMAX /D UNICODE /D _UNICODE /D "CMAKE_INTDIR=\\\"Release\\\"" /l"0x0409" /IC:\cabana_cerdos_app\windows /IC:\cabana_cerdos_app\windows\flutter\ephemeral /IC:\cabana_cerdos_app\windows\flutter\ephemeral\cpp_client_wrapper\include /IC:\cabana_cerdos_app\windows\flutter\ephemeral\.plugin_symlinks\url_launcher_windows\windows\include /nologo /fo"cabana_cerdos_app.dir\Release\Runner.res" C:\cabana_cerdos_app\windows\runner\Runner.rc 
+[  +49 ms] Link:
+[        ]   C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\bin\HostX64\x64\link.exe /OUT:"C:\cabana_cerdos_app\build\windows\x64\runner\Release\cabana_cerdos_app.exe" /INCREMENTAL:NO /NOLOGO ..\flutter\Release\flutter_wrapper_app.lib dwmapi.lib ..\plugins\url_launcher_windows\Release\url_launcher_windows_plugin.lib C:\cabana_cerdos_app\windows\flutter\ephemeral\flutter_windows.dll.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:C:\cabana_cerdos_app\windows\runner\runner.exe.manifest /PDB:"C:/cabana_cerdos_app/build/windows/x64/runner/Release/cabana_cerdos_app.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /IMPLIB:"C:/cabana_cerdos_app/build/windows/x64/runner/Release/cabana_cerdos_app.lib" /MACHINE:X64  /machine:x64 cabana_cerdos_app.dir\Release\Runner.res
+[        ]   cabana_cerdos_app.dir\Release\flutter_window.obj
+[        ]   cabana_cerdos_app.dir\Release\main.obj
+[        ]   cabana_cerdos_app.dir\Release\utils.obj
+[        ]   cabana_cerdos_app.dir\Release\win32_window.obj
+[        ]   cabana_cerdos_app.dir\Release\generated_plugin_registrant.obj
+[ +141 ms]   cabana_cerdos_app.vcxproj -> C:\cabana_cerdos_app\build\windows\x64\runner\Release\cabana_cerdos_app.exe
+[   +8 ms] FinalizeBuildStatus:
+[        ]   Se eliminará el archivo "cabana_cerdos_app.dir\Release\cabana_c.D9233152.tlog\unsuccessfulbuild".
+[        ]   Aplicando tarea Touch a "cabana_cerdos_app.dir\Release\cabana_c.D9233152.tlog\cabana_cerdos_app.lastbuildstate".
+[        ] Compilación del proyecto terminada "C:\cabana_cerdos_app\build\windows\x64\runner\cabana_cerdos_app.vcxproj" (destinos predeterminados).
+[   +4 ms] PrepareForBuild:
+[        ]   Creando directorio "x64\Release\ALL_BUILD\".
+[   +1 ms]   La salida estructurada está habilitada. El formato del diagnóstico del compilador reflejará la jerarquía de errores. Consulte https://aka.ms/cpp/structured-output para obtener más detalles.
+[        ]   Creando directorio "x64\Release\ALL_BUILD\ALL_BUILD.tlog\".
+[   +1 ms] InitializeBuildStatus:
+[        ]   Se creará "x64\Release\ALL_BUILD\ALL_BUILD.tlog\unsuccessfulbuild" porque se especificó "AlwaysCreate".
+[        ]   Aplicando tarea Touch a "x64\Release\ALL_BUILD\ALL_BUILD.tlog\unsuccessfulbuild".
+[  +31 ms] CustomBuild:
+[        ]   Building Custom Rule C:/cabana_cerdos_app/windows/CMakeLists.txt
+[  +34 ms] FinalizeBuildStatus:
+[        ]   Se eliminará el archivo "x64\Release\ALL_BUILD\ALL_BUILD.tlog\unsuccessfulbuild".
+[        ]   Aplicando tarea Touch a "x64\Release\ALL_BUILD\ALL_BUILD.tlog\ALL_BUILD.lastbuildstate".
+[   +1 ms] Compilación del proyecto terminada "C:\cabana_cerdos_app\build\windows\x64\ALL_BUILD.vcxproj" (destinos predeterminados).
+[   +3 ms] PrepareForBuild:
+[        ]   Creando directorio "x64\Release\INSTALL\".
+[   +1 ms]   La salida estructurada está habilitada. El formato del diagnóstico del compilador reflejará la jerarquía de errores. Consulte https://aka.ms/cpp/structured-output para obtener más detalles.
+[        ]   Creando directorio "x64\Release\INSTALL\INSTALL.tlog\".
+[   +1 ms] InitializeBuildStatus:
+[        ]   Se creará "x64\Release\INSTALL\INSTALL.tlog\unsuccessfulbuild" porque se especificó "AlwaysCreate".
+[        ]   Aplicando tarea Touch a "x64\Release\INSTALL\INSTALL.tlog\unsuccessfulbuild".
+[  +30 ms] CustomBuild:
+[        ]   1>
+[  +12 ms] PostBuildEvent:
+[        ]   setlocal
+[        ]   "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DBUILD_TYPE=Release -P cmake_install.cmake
+[        ]   if %errorlevel% neq 0 goto :cmEnd
+[        ]   :cmEnd
+[        ]   endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+[        ]   :cmErrorLevel
+[        ]   exit /b %1
+[        ]   :cmDone
+[        ]   if %errorlevel% neq 0 goto :VCEnd
+[        ]   :VCEnd
+[  +49 ms]   -- Install configuration: "Release"
+[  +25 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/icudtl.dat
+[   +2 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/flutter_windows.dll
+[  +47 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/url_launcher_windows_plugin.dll
+[   +1 ms]   -- Up-to-date: C:/cabana_cerdos_app/build/windows/x64/runner/Release
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/AssetManifest.bin
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/assets
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/assets/models
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/assets/models/farm.glb
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/assets/models/maternity.glb
+[   +1 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/assets/models/pre_destete.glb
+[   +1 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/FontManifest.json
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/fonts
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+[   +2 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/NativeAssetsManifest.json
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/NOTICES.Z
+[   +1 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/packages
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/packages/cupertino_icons
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/packages/cupertino_icons/assets
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+[   +1 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/packages/model_viewer_plus
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/packages/model_viewer_plus/assets
+[   +1 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/packages/model_viewer_plus/assets/model-viewer.min.js
+[   +2 ms]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/packages/model_viewer_plus/assets/template.html
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/shaders
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/shaders/ink_sparkle.frag
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/flutter_assets/shaders/stretch_effect.frag
+[        ]   -- Installing: C:/cabana_cerdos_app/build/windows/x64/runner/Release/data/app.so
+[  +16 ms] FinalizeBuildStatus:
+[        ]   Se eliminará el archivo "x64\Release\INSTALL\INSTALL.tlog\unsuccessfulbuild".
+[        ]   Aplicando tarea Touch a "x64\Release\INSTALL\INSTALL.tlog\INSTALL.lastbuildstate".
+[   +1 ms] Compilación del proyecto terminada "C:\cabana_cerdos_app\build\windows\x64\INSTALL.vcxproj" (destinos predeterminados).
+[   +7 ms] Compilación correcta.
+[        ]     0 Advertencia(s)
+[        ]     0 Errores
+[        ] Tiempo transcurrido 00:00:37.22
+[  +23 ms] Building Windows application... (completed in 39,3s)
+[   +1 ms] √ Built build\windows\x64\runner\Release\cabana_cerdos_app.exe
+[        ] "flutter windows" took 39.824ms.
+[  +60 ms] Running 1 shutdown hook
+[   +2 ms] Shutdown hooks complete
+[ +265 ms] exiting with code 0

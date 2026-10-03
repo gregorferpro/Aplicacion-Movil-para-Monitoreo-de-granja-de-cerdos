@@ -1,0 +1,181 @@
+@startuml diagrama_sqlite_normalizado_dataset
+title SIPOR 360 - SQLite version 3: tablas existentes + tablas normalizadas nuevas
+
+skinparam backgroundColor #F6F8F5
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #527567
+  ArrowColor #527567
+  FontColor #1F2D27
+}
+hide empty members
+
+package "SQLite existente (sin cambios, version 2 -> 3)" #E8F1EC {
+  class MetadatosAplicacion {
+    - clave: Cadena <<PK>>
+    - valor: Cadena
+    - actualizadoEn: FechaHora
+  }
+
+  class EntidadLocal {
+    - tipoEntidad: Cadena <<PK 1/2>>
+    - idEntidad: Cadena <<PK 2/2>>
+    - codigoCabana: Cadena
+    - datosJson: Cadena
+    - creadoEn: FechaHora
+    - actualizadoEn: FechaHora
+    - eliminadoEn: FechaHora
+    - estadoSincronizacion: Cadena
+  }
+
+  class ColaSincronizacion {
+    - id: Entero <<PK autoincrement>>
+    - tipoEntidad: Cadena
+    - idEntidad: Cadena
+    - operacion: Cadena
+    - datosJson: Cadena
+    - creadoEn: FechaHora
+    - cantidadIntentos: Entero
+    - ultimoError: Cadena
+  }
+
+  EntidadLocal "1" ..> "0..*" ColaSincronizacion : genera pendientes
+}
+
+note top of EntidadLocal
+  No se borro ni se modifico esta tabla.
+  Sigue guardando productos, lotes, consumos,
+  mortalidades, ventas, etc. como datos_json,
+  exactamente igual que antes de la migracion.
+end note
+
+package "Tablas normalizadas nuevas (version 3, sin JSON)" #FFF4DD {
+  class Zona {
+    + id_zona: Cadena <<PK>>
+    + nombre_zona: Cadena
+    + departamento: Cadena
+    + pais: Cadena
+  }
+
+  class FuenteDatos {
+    + id_fuente: Cadena <<PK>>
+    + nombre_fuente: Cadena
+    + tipo_fuente: Cadena
+    + descripcion: Cadena
+  }
+
+  class ClimaExterior {
+    + id_clima: Cadena <<PK>>
+    + id_zona: Cadena <<FK>>
+    + id_fuente: Cadena <<FK>>
+    + fecha_hora: FechaHora
+    + temperatura_2m_c: Decimal
+    + humedad_relativa_2m: Decimal
+    + precipitacion_mm: Decimal
+    + lluvia_mm: Decimal
+  }
+
+  class Mercado {
+    + id_mercado: Cadena <<PK>>
+    + nombre_mercado: Cadena
+    + id_zona: Cadena <<FK>>
+    + descripcion: Cadena
+  }
+
+  class PrecioMercadoPorcino {
+    + id_precio: Cadena <<PK>>
+    + id_mercado: Cadena <<FK>>
+    + id_fuente: Cadena <<FK>>
+    + fecha: Fecha
+    + precio_kg_vivo: Decimal
+    + precio_kg_canal: Decimal
+    + moneda: Cadena
+  }
+
+  class IndicadorClimatico {
+    + id_indicador_climatico: Cadena <<PK>>
+    + id_zona: Cadena <<FK>>
+    + anio: Entero
+    + mes: Entero
+    + temperatura_promedio_c: Decimal
+    + humedad_promedio: Decimal
+    + precipitacion_total_mm: Decimal
+    + lluvia_total_mm: Decimal
+    + dias_calor_extremo: Entero
+    + dias_humedad_alta: Entero
+    + nivel_riesgo_sanitario: Cadena
+  }
+
+  class IndicadorMercado {
+    + id_indicador_mercado: Cadena <<PK>>
+    + id_mercado: Cadena <<FK>>
+    + anio: Entero
+    + mes: Entero
+    + precio_promedio_kg_vivo: Decimal
+    + precio_maximo_kg_vivo: Decimal
+    + precio_minimo_kg_vivo: Decimal
+    + tendencia: Cadena
+    + nivel_conveniencia: Cadena
+  }
+
+  class PlanificacionProductiva {
+    + id_planificacion: Cadena <<PK>>
+    + id_zona: Cadena <<FK>>
+    + objetivo: Cadena
+    + fecha_monta_recomendada: Fecha
+    + fecha_parto_estimada: Fecha
+    + fecha_destete_estimada: Fecha
+    + fecha_venta_estimada: Fecha
+    + estado: Cadena
+    + fecha_creacion: FechaHora
+  }
+
+  class RecomendacionProductiva {
+    + id_recomendacion: Cadena <<PK>>
+    + id_planificacion: Cadena <<FK>>
+    + puntaje_clima: Decimal
+    + puntaje_precio: Decimal
+    + puntaje_salud: Decimal
+    + puntaje_peso: Decimal
+    + puntaje_total: Decimal
+    + explicacion: Cadena
+    + fecha_generada: FechaHora
+  }
+
+  Zona "1" o-- "0..*" ClimaExterior
+  FuenteDatos "1" o-- "0..*" ClimaExterior
+  Zona "1" o-- "0..*" Mercado
+  Mercado "1" o-- "0..*" PrecioMercadoPorcino
+  FuenteDatos "1" o-- "0..*" PrecioMercadoPorcino
+  Zona "1" o-- "0..*" IndicadorClimatico
+  Mercado "1" o-- "0..*" IndicadorMercado
+  Zona "1" o-- "0..*" PlanificacionProductiva
+  PlanificacionProductiva "1" o-- "0..*" RecomendacionProductiva
+
+  ClimaExterior ..> IndicadorClimatico : agregado mensual\n(AVG/SUM por zona)
+  PrecioMercadoPorcino ..> IndicadorMercado : agregado mensual\n(AVG/MIN/MAX por mercado)
+  IndicadorClimatico ..> PlanificacionProductiva : insumo para\nfechas recomendadas
+  IndicadorMercado ..> PlanificacionProductiva : insumo para\nfecha_venta_estimada
+}
+
+note bottom of RecomendacionProductiva
+  Sin FOREIGN KEY hacia entidades_locales:
+  LoteProduccion, Mortalidad, Consumo y CostoLote
+  siguen viviendo como JSON. La relacion con
+  produccion es logica (por fecha / por zona),
+  resuelta en consultas, no con una FK directa
+  contra un campo TEXT con JSON.
+end note
+
+legend bottom left
+  |= Elemento |= Significado |
+  | Paquete izquierdo | Sin cambios: mismas 3 tablas de siempre |
+  | Paquete derecho | Nuevo en la migracion version 3, tablas reales (no JSON) |
+  | <<FK>> | FOREIGN KEY real, validada por SQLite (PRAGMA foreign_keys = ON) |
+  | Sin <<INDEX>>/<<TRIGGER>>/<<VIEW>> | Por restriccion explicita del pedido |
+endlegend
+@enduml

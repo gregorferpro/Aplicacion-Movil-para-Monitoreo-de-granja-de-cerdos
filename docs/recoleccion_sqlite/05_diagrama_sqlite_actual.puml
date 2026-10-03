@@ -1,0 +1,203 @@
+@startuml diagrama_sqlite_actual
+title SIPOR 360 - SQLite fisico vs. entidades logicas (estado real, 2026-08-18)
+
+skinparam backgroundColor #F6F8F5
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam class {
+  BackgroundColor #FFFFFF
+  BorderColor #527567
+  ArrowColor #527567
+  FontColor #1F2D27
+}
+hide empty members
+
+package "SQLite fisico (tablas reales)" #E8F1EC {
+  class MetadatosAplicacion {
+    - clave: Cadena <<PK>>
+    - valor: Cadena
+    - actualizadoEn: FechaHora
+  }
+
+  class EntidadLocal {
+    - tipoEntidad: Cadena <<PK 1/2>>
+    - idEntidad: Cadena <<PK 2/2>>
+    - codigoCabana: Cadena
+    - datosJson: Cadena
+    - creadoEn: FechaHora
+    - actualizadoEn: FechaHora
+    - eliminadoEn: FechaHora
+    - estadoSincronizacion: Cadena
+  }
+
+  class ColaSincronizacion {
+    - id: Entero <<PK autoincrement>>
+    - tipoEntidad: Cadena
+    - idEntidad: Cadena
+    - operacion: Cadena
+    - datosJson: Cadena
+    - creadoEn: FechaHora
+    - cantidadIntentos: Entero
+    - ultimoError: Cadena
+  }
+
+  EntidadLocal "1" ..> "0..*" ColaSincronizacion : genera pendientes
+}
+
+note top of EntidadLocal
+  SQLite NO tiene una tabla fisica por
+  cada entidad de negocio. Usa
+  entidades_locales como tabla generica
+  tipo documento: tipo_entidad + id_entidad
+  identifican el "modulo", y datos_json
+  guarda TODO su contenido serializado.
+  Las clases del paquete de la derecha
+  NO son tablas: son estructuras que
+  viven dentro de un unico campo TEXT.
+end note
+
+package "Entidades logicas dentro de datos_json (no son tablas)" #FFF4DD {
+  class Producto {
+    + name: Cadena
+    + category: Cadena
+    + baseUnit: Cadena
+    + stock: Decimal
+    + averageCost: Decimal
+  }
+  class Compra {
+    + date: Fecha
+    + supplier: Cadena
+    + productId: Cadena
+    + totalPrice: Decimal
+  }
+  class LoteProduccion {
+    + code: Cadena
+    + motherId: Cadena
+    + currentStage: Cadena
+    + currentAnimals: Entero
+  }
+  class Animal <<no existe hoy>> {
+    .. solo referenciado como ID string ..
+    (motherId, animalId) sin entidad propia
+  }
+  class CicloReproductivo {
+    + motherId: Cadena
+    + serviceDate: Fecha
+    + estimatedFarrowingDate: Fecha
+    + status: Cadena
+  }
+  class Parto <<no existe hoy>> {
+    .. no hay JSON dedicado a Parto ..
+    (los datos de parto viven implicitos
+    en ProductionLot: totalBorn, bornAlive,
+    bornDead)
+  }
+  class Consumo {
+    + date: Fecha
+    + target: Cadena
+    + productId: Cadena
+    + lotId: Cadena
+    + totalCost: Decimal
+  }
+  class Mortalidad {
+    + date: Fecha
+    + lotId: Cadena
+    + deadCount: Entero
+    + cause: Cadena
+  }
+  class Pesaje <<no existe hoy>> {
+    .. sin JSON dedicado ..
+  }
+  class CostoLote {
+    + date: Fecha
+    + stage: Cadena
+    + category: Cadena
+    + amount: Decimal
+  }
+  class Venta {
+    + date: Fecha
+    + lotId: Cadena
+    + soldAnimals: Entero
+    + totalSale: Decimal
+  }
+  class FormulaAlimento {
+    + name: Cadena
+    + stage: Cadena
+    + version: Entero
+  }
+  class PreparacionAlimento {
+    + code: Cadena
+    + formulaId: Cadena
+    + producedKg: Decimal
+  }
+  class MovimientoInventario {
+    + date: Fecha
+    + productId: Cadena
+    + type: Cadena
+    + quantity: Decimal
+  }
+
+  class RegistroClima <<futuro / recomendado>> {
+    - id_clima: UUID
+    - fecha_hora: FechaHora
+    - temperatura_2m_c: Decimal
+    - humedad_relativa_2m: Decimal
+    - precipitacion_mm: Decimal
+    - lluvia_mm: Decimal
+    - zona: Cadena
+    - fuente: Cadena
+  }
+
+  class PrecioMercadoPorcino <<futuro / recomendado>> {
+    - id_precio: UUID
+    - fecha: Fecha
+    - precio_por_kg: Decimal
+    - mercado: Cadena
+    - fuente: Cadena
+  }
+
+  LoteProduccion "1" *-- "0..*" CostoLote : costLines[]
+  LoteProduccion "0..*" --> "0..1" CicloReproductivo : motherId (por convencion)
+  Consumo "0..*" --> "0..1" LoteProduccion : lotId (por convencion)
+  Mortalidad "0..*" --> "0..1" LoteProduccion : lotId (por convencion)
+  Venta "0..*" --> "0..1" LoteProduccion : lotId (por convencion)
+  FormulaAlimento "1" ..> "0..*" PreparacionAlimento : formulaId
+  Compra "0..*" --> "0..1" Producto : productId (por convencion)
+  MovimientoInventario "0..*" --> "0..1" Producto : productId (por convencion)
+
+  RegistroClima ..> LoteProduccion : correlacion por fecha (propuesta)
+  RegistroClima ..> Mortalidad : correlacion por fecha (propuesta)
+  RegistroClima ..> Consumo : correlacion por fecha (propuesta)
+  RegistroClima ..> CostoLote : correlacion por periodo (propuesta)
+  PrecioMercadoPorcino ..> Venta : referencia de precio sugerido (propuesta)
+}
+
+note bottom of RegistroClima
+  RegistroClima y PrecioMercadoPorcino NO
+  existen en el codigo actual (se confirmo
+  por busqueda de texto en todo el repo).
+  Se incluyen aqui solo como propuesta para
+  la siguiente fase de arquitectura.
+end note
+
+EntidadLocal "1 fila por modulo" ..> "8 valores de id_entidad" Producto : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> LoteProduccion : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> CicloReproductivo : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> Consumo : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> Mortalidad : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> Venta : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> FormulaAlimento : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> PreparacionAlimento : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> MovimientoInventario : datos_json contiene\n(costos_produccion)
+EntidadLocal ..> Compra : datos_json contiene\n(costos_produccion)
+
+legend bottom left
+  |= Elemento |= Significado |
+  | Paquete izquierdo | Tablas SQL reales, verificadas en el .db |
+  | Paquete derecho (sin <<futuro>>) | Estructuras que hoy existen dentro de datos_json |
+  | <<no existe hoy>> | Mencionado en el pedido del usuario pero sin JSON propio actualmente |
+  | <<futuro / recomendado>> | Propuesta para orientar el proyecto a los datasets de clima y precios |
+endlegend
+@enduml
